@@ -30,17 +30,25 @@ export default class Index extends Component {
   search = () =>{
     console.log(123);
   }
-
+  init = () => {
+    const {windowWidth} = Taro.getSystemInfoSync();
+    console.log(windowWidth*0.152)
+  }
   componentDidMount(){
     this.setState({
       year:new Date().getFullYear()
     })
+    this.init()
   }
 
   render () {
     const {keyword,inputing,year} = this.state;
     let count = 0;
     let months = Array.from({length:12},()=>++count);
+
+    const {windowWidth} = Taro.getSystemInfoSync();
+    let mgpx = (windowWidth*0.152) + 'px'
+
     return (
       <View className='index'>
         <SearchNav keyword={keyword} inputing={inputing} search={this.search} bindInput={this.bindInput}
@@ -52,8 +60,8 @@ export default class Index extends Component {
           className='swiper'
           indicatorColor='#999'
           indicatorActiveColor='#333'
-          previousMargin='80px'
-          nextMargin='30px'
+          previousMargin={mgpx}
+          nextMargin={mgpx}
           >
           {
             months.map(e=>{
