@@ -7,21 +7,24 @@ $wid:82rpx;
 .login_btn{
   width: 90vw;
   position: absolute;
-  bottom: 23vh;
+  bottom: 40vh;
   left: 5%;
   background: transparent;
   border: 2rpx solid rgb(0,213,209);
   border-radius: 45px;
-  transition: all .3s ease;
+  // transition: all .3s ease;
+  transition-property: width, left;
+  transition-duration: .3s;
+  transition-timing-function: linear;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 88rpx;
+  height: 44PX;
   overflow: visible;
   .login_txt{
     color:#fff;
-    font-size: 24px;
-    line-height: 88rpx;
+    font-size: 24PX;
+    line-height: 44PX;
   }
   &.loading_btn{
     width: 88rpx;
@@ -79,14 +82,14 @@ $wid:82rpx;
   transform : rotate(-135deg);
 }
 .circle_process .rightcircle{
-  border-top:4px solid green;
-  border-right:4px solid green;
+  border-top:4px solid rgb(102,102,102);
+  border-right:4px solid rgb(102,102,102);
   right:0;
   animation: circle_right 3s linear infinite;
 }
 .circle_process .leftcircle{
-  border-bottom:4px solid green;
-  border-left:4px solid green;
+  border-bottom:4px solid rgb(102,102,102);
+  border-left:4px solid rgb(102,102,102);
   left:0;
   animation: circle_left 3s linear infinite;
 }

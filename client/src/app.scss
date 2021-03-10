@@ -5,6 +5,14 @@ button {
   }
 }
 
+@font-face{
+  font-family: 'Arch';
+  src:url("./assets/font/ArchitectsDaughter-Regular.ttf");
+}
+
+page{
+  font-family: 'Arch';
+}
 form {
   display: block;
 }
@@ -14,3 +22,5 @@ form {
   top:0;
   left: calc(50% - $width / 2);
 }
+
+$theme_color:#000;

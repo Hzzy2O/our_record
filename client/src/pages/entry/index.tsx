@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { View, Text ,Video ,Button } from '@tarojs/components'
+import Taro, { Config } from '@tarojs/taro'
 import './index.scss'
 import classNames from 'classnames'
 import LoginButton from "../../components/login/index.weapp"
@@ -10,11 +11,10 @@ export default class Entry extends Component {
     text:'login',
     clk:false
   }
-  componentWillMount () { }
 
-  componentDidMount () { }
-
-  componentWillUnmount () { }
+  componentDidMount () {
+    
+   }
 
   componentDidShow () { }
 
@@ -30,7 +30,12 @@ export default class Entry extends Component {
       this.setState({
         status: 2,
         text:'success'
-      }) 
+      });
+      setTimeout(() => {
+        Taro.navigateTo({
+          url:"../index/index"
+        })
+      }, 500);
     }, 2800);
   }
   render () {
@@ -44,3 +49,28 @@ export default class Entry extends Component {
     )
   }
 }
+
+// Taro.cloud
+//       .callFunction({
+//         name: "login"
+//       })
+//       .then(res => {
+//         let {openid} = res.result as any
+//         wx.setClipboardData({
+//           data: openid,
+//           success: function() {
+//             // self.setData({copyTip:true}),
+//             wx.showModal({
+//             title: '提示',
+//             content: '复制成功',
+//             success: function(res) {
+//               if (res.confirm) {
+//                 console.log('确定')
+//               } else if (res.cancel) {
+//                 console.log('取消')
+//               }
+//             }
+//           })
+//         }})
+//       })
+    

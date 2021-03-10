@@ -1,0 +1,39 @@
+.search{
+  padding:0 30rpx;
+  font-size: 13PX;
+  width: 60vw;
+  height: 24PX;
+  .search_out{
+    display: flex;
+    justify-content: space-between;
+    .icon_box{
+      min-width: 20vw;
+    }
+    .date_txt{
+      font-size: 13PX;
+      line-height: 24PX;
+    }
+  }
+  .search_in{
+    display: flex;
+    justify-content: space-between;
+    .search_input{
+      border-radius: 10PX;
+      width:49vw;
+      background: rgba(238, 238, 238, 0.342);
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      .iconfont{
+        margin-right: 10px;
+        .input{
+          font-size: 100%;
+        }
+      }
+    }
+    .cancel{
+      display: flex;
+      align-items: center;
+    }
+  }
+}

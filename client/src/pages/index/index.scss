@@ -1,0 +1,22 @@
+.index{
+  font-size: 14PX;
+  .year_cho{
+    width: 100%;
+    height: 100px;
+    display: grid;
+    place-items: center;
+  }
+  .swiper{
+    position: relative;
+    overflow: visible;
+    height: 330PX;
+  }
+  .s_item{
+    overflow: visible;
+    padding-top: 25PX;
+  }
+}
+.demo-text{
+  border: 1px solid red;
+  width: 360rpx;
+}
