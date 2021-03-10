@@ -1,0 +1,16 @@
+button {
+  border-radius: 0;
+  &::after {
+    border-width: 0;
+  }
+}
+
+form {
+  display: block;
+}
+
+@mixin ab_mid($width){
+  position: absolute;
+  top:0;
+  left: calc(50% - $width / 2);
+}

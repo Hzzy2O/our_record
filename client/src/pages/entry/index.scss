@@ -1,0 +1,15 @@
+.bg_video{
+  width: 190vw;
+  height: 100vh;
+  position: absolute;
+  right: -48vw;
+  top: -8vh;
+  transform: rotate(-90deg);
+  z-index: -1;
+}
+.entry{
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}

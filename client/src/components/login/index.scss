@@ -1,0 +1,108 @@
+@mixin ab_mid($width){
+  position: absolute;
+  top:0;
+  left: calc(50% - $width / 2);
+}
+$wid:82rpx;
+.login_btn{
+  width: 90vw;
+  position: absolute;
+  bottom: 23vh;
+  left: 5%;
+  background: transparent;
+  border: 2rpx solid rgb(0,213,209);
+  border-radius: 45px;
+  transition: all .3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 88rpx;
+  overflow: visible;
+  .login_txt{
+    color:#fff;
+    font-size: 24px;
+    line-height: 88rpx;
+  }
+  &.loading_btn{
+    width: 88rpx;
+    left: calc(50% - 44rpx);
+  }
+  &.success_btn{
+    background: rgb(0,213,209);
+  }
+}
+
+.right,.left{
+  position: absolute;
+  width: 48px;
+  height: 94px;
+  overflow: hidden;
+  top: 0;
+}
+.rightcircle,.leftcircle{
+  width: $wid;
+  height: $wid;
+  border:6px solid transparent;
+  border-radius: 50%;
+  position: absolute;
+  top:0;
+  transform : rotate(44deg); /* 旋转45度 */
+}
+.circle_process{
+  position: absolute;
+  top: -4rpx;
+  width: 89rpx;
+  height: 88rpx;
+  left: calc(50% - 44rpx);
+}
+.circle_process .wrapper{
+  width: 88px;
+  height: 88px;
+  position: absolute;
+  top:0;
+  left: calc(50% - 44rpx);
+  overflow: hidden;
+}
+.circle_process .right{
+  right:0rpx;
+}
+.circle_process .left{
+  left:0rpx;
+}
+.circle_process .circle{
+  width: 86px;
+  height: 88px;
+  border:8px solid transparent;
+  border-radius: 50%;
+  position: absolute;
+  top:0;
+  transform : rotate(-135deg);
+}
+.circle_process .rightcircle{
+  border-top:4px solid green;
+  border-right:4px solid green;
+  right:0;
+  animation: circle_right 3s linear infinite;
+}
+.circle_process .leftcircle{
+  border-bottom:4px solid green;
+  border-left:4px solid green;
+  left:0;
+  animation: circle_left 3s linear infinite;
+}
+@keyframes circle_right{
+  0%{
+      transform: rotate(-135deg);
+  }
+  50%,100%{
+      transform: rotate(45deg);
+  }
+}
+@keyframes circle_left{
+  0%,50%{
+      transform: rotate(-135deg);
+  }
+  100%{
+      transform: rotate(45deg);
+  }
+}
