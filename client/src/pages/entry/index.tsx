@@ -4,6 +4,8 @@ import Taro, { Config } from '@tarojs/taro'
 import './index.scss'
 import classNames from 'classnames'
 import LoginButton from "../../components/login/index.weapp"
+
+const us = ['oE4ww5IwL2Xf1EPIavkxxW9R5qFw','oE4ww5HO9UjfeZZRBq1_BF3fe3dk']
 export default class Entry extends Component {
 
   state = {

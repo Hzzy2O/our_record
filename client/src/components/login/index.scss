@@ -3,7 +3,7 @@
   top:0;
   left: calc(50% - $width / 2);
 }
-$wid:82rpx;
+$wid:39PX;
 .login_btn{
   width: 90vw;
   position: absolute;
@@ -11,7 +11,7 @@ $wid:82rpx;
   left: 5%;
   background: transparent;
   border: 2rpx solid rgb(0,213,209);
-  border-radius: 45px;
+  border-radius: 24PX;
   // transition: all .3s ease;
   transition-property: width, left;
   transition-duration: .3s;
@@ -19,15 +19,16 @@ $wid:82rpx;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 44PX;
+  height: 48PX;
   overflow: visible;
   .login_txt{
     color:#fff;
     font-size: 24PX;
-    line-height: 44PX;
+    line-height: 48PX;
   }
   &.loading_btn{
-    width: 88rpx;
+    width: 48PX;
+    border-width: 4PX;
     left: calc(50% - 44rpx);
   }
   &.success_btn{
@@ -37,59 +38,64 @@ $wid:82rpx;
 
 .right,.left{
   position: absolute;
-  width: 48px;
-  height: 94px;
+  width: 24PX;
+  height: 50PX;
   overflow: hidden;
-  top: 0;
+  top: -1PX;
+}
+.left{
+  width: 22.8PX;
+  transform: rotate(-3deg) translate(-1px,2px);
+  transform-origin: 0% 12PX;
 }
 .rightcircle,.leftcircle{
   width: $wid;
   height: $wid;
-  border:6px solid transparent;
-  border-radius: 50%;
+  border:4PX solid transparent;
+  border-radius: 24PX;
   position: absolute;
   top:0;
   transform : rotate(44deg); /* 旋转45度 */
 }
 .circle_process{
   position: absolute;
-  top: -4rpx;
-  width: 89rpx;
-  height: 88rpx;
-  left: calc(50% - 44rpx);
+  top: -4PX;
+  width: 48PX;
+  height: 48PX;
+  left: calc(50% - 24PX);
 }
 .circle_process .wrapper{
-  width: 88px;
-  height: 88px;
+  width: 48PX;
+  height: 48PX;
   position: absolute;
   top:0;
-  left: calc(50% - 44rpx);
+  left: calc(50% - 24PX);
   overflow: hidden;
 }
 .circle_process .right{
-  right:0rpx;
+  right:0;
 }
 .circle_process .left{
-  left:0rpx;
+  left:0;
 }
 .circle_process .circle{
-  width: 86px;
-  height: 88px;
-  border:8px solid transparent;
-  border-radius: 50%;
+  width: 48PX;
+  height: 48PX;
+  border:4PX solid transparent;
+  border-radius: 24PX;
   position: absolute;
   top:0;
   transform : rotate(-135deg);
 }
 .circle_process .rightcircle{
-  border-top:4px solid rgb(102,102,102);
-  border-right:4px solid rgb(102,102,102);
+  border-top:6PX solid rgb(102,102,102);
+  border-right:6PX solid rgb(102,102,102);
   right:0;
   animation: circle_right 3s linear infinite;
 }
 .circle_process .leftcircle{
-  border-bottom:4px solid rgb(102,102,102);
-  border-left:4px solid rgb(102,102,102);
+  border-bottom:6PX solid rgb(102,102,102);
+  border-left:6PX solid rgb(102,102,102);
   left:0;
   animation: circle_left 3s linear infinite;
 }
