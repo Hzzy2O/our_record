@@ -4,6 +4,7 @@ import { View, Text ,Swiper, SwiperItem} from '@tarojs/components'
 import './index.scss'
 import SearchNav from "../../components/search/index.weapp"
 import Card from "../../components/card/index.weapp"
+import {getMonth} from "../../apis"
 
 export default class Index extends Component {
 
@@ -30,14 +31,16 @@ export default class Index extends Component {
   search = () =>{
     console.log(123);
   }
-  init = () => {
-    const {windowWidth} = Taro.getSystemInfoSync();
-    console.log(windowWidth*0.152)
+  
+  async init(){
+    const res = await getMonth()
+    console.log(res)
   }
   componentDidMount(){
     this.setState({
       year:new Date().getFullYear()
     })
+    
     this.init()
   }
 
@@ -54,7 +57,7 @@ export default class Index extends Component {
         <SearchNav keyword={keyword} inputing={inputing} search={this.search} bindInput={this.bindInput}
           changeStatus={this.changeStatus}></SearchNav>
         <View className='year_cho'>
-          <Text>{year}</Text>
+          <Text className='year_txt'>{year}</Text>
         </View>
         <Swiper
           className='swiper'
@@ -66,7 +69,7 @@ export default class Index extends Component {
           {
             months.map(e=>{
               return <SwiperItem className='s_item'>
-                <Card year={year} month={e}>1</Card>
+                <Card year={year} month={e}></Card>
               </SwiperItem>
             })
           }

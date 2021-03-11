@@ -4,13 +4,14 @@
   left: calc(50% - $width / 2);
 }
 $wid:39PX;
+$color:#00D5D1;
 .login_btn{
   width: 90vw;
   position: absolute;
   bottom: 40vh;
   left: 5%;
   background: transparent;
-  border: 2rpx solid rgb(0,213,209);
+  border: 2rpx solid $color;
   border-radius: 24PX;
   // transition: all .3s ease;
   transition-property: width, left;
@@ -28,90 +29,105 @@ $wid:39PX;
   }
   &.loading_btn{
     width: 48PX;
-    border-width: 4PX;
+    // border-width: 4PX;
     left: calc(50% - 44rpx);
   }
   &.success_btn{
-    background: rgb(0,213,209);
+    background: $color;
   }
 }
 
-.right,.left{
-  position: absolute;
-  width: 24PX;
-  height: 50PX;
+
+.fingerprint-spinner, .fingerprint-spinner  {
+  box-sizing: border-box;
+}
+
+.fingerprint-spinner {
+  height: 48PX;
+  width: 48PX;
+  padding: 2px;
   overflow: hidden;
-  top: -1PX;
+  position: relative;
+  animation: appear 500ms cubic-bezier(0.680, -0.750, 0.265, 1.750);
 }
-.left{
-  width: 22.8PX;
-  transform: rotate(-3deg) translate(-1px,2px);
-  transform-origin: 0% 12PX;
-}
-.rightcircle,.leftcircle{
-  width: $wid;
-  height: $wid;
-  border:4PX solid transparent;
-  border-radius: 24PX;
+
+.fingerprint-spinner .spinner-ring {
   position: absolute;
-  top:0;
-  transform : rotate(44deg); /* 旋转45度 */
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color:#20B2AA;
+  animation: fingerprint-spinner-animation 1500ms cubic-bezier(0.680, -0.750, 0.265, 1.750) infinite forwards;
+  margin: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
 }
-.circle_process{
-  position: absolute;
-  top: -4PX;
-  width: 48PX;
-  height: 48PX;
-  left: calc(50% - 24PX);
+$fg_wid:48PX;
+.fingerprint-spinner .spinner-ring:nth-child(1) {
+  height: calc(42PX / 9 + 0 * 42PX / 9);
+  width: calc(42PX / 9 + 0 * 42PX / 9);
+  animation-delay: calc(50ms * 1);
 }
-.circle_process .wrapper{
-  width: 48PX;
-  height: 48PX;
-  position: absolute;
-  top:0;
-  left: calc(50% - 24PX);
-  overflow: hidden;
+
+.fingerprint-spinner .spinner-ring:nth-child(2) {
+  height: calc(42PX / 9 + 1 * 42PX / 9);
+  width: calc(42PX / 9 + 1 * 42PX / 9);
+  animation-delay: calc(50ms * 2);
 }
-.circle_process .right{
-  right:0;
+
+.fingerprint-spinner .spinner-ring:nth-child(3) {
+  height: calc(42PX / 9 + 2 * 42PX / 9);
+  width: calc(42PX / 9 + 2 * 42PX / 9);
+  animation-delay: calc(50ms * 3);
 }
-.circle_process .left{
-  left:0;
+
+.fingerprint-spinner .spinner-ring:nth-child(4) {
+  height: calc(42PX / 9 + 3 * 42PX / 9);
+  width: calc(42PX / 9 + 3 * 42PX / 9);
+  animation-delay: calc(50ms * 4);
 }
-.circle_process .circle{
-  width: 48PX;
-  height: 48PX;
-  border:4PX solid transparent;
-  border-radius: 24PX;
-  position: absolute;
-  top:0;
-  transform : rotate(-135deg);
+
+.fingerprint-spinner .spinner-ring:nth-child(5) {
+  height: calc(42PX / 9 + 4 * 42PX / 9);
+  width: calc(42PX / 9 + 4 * 42PX / 9);
+  animation-delay: calc(50ms * 5);
 }
-.circle_process .rightcircle{
-  border-top:6PX solid rgb(102,102,102);
-  border-right:6PX solid rgb(102,102,102);
-  right:0;
-  animation: circle_right 3s linear infinite;
+
+.fingerprint-spinner .spinner-ring:nth-child(6) {
+  height: calc(42PX / 9 + 5 * 42PX / 9);
+  width: calc(42PX / 9 + 5 * 42PX / 9);
+  animation-delay: calc(50ms * 6);
 }
-.circle_process .leftcircle{
-  border-bottom:6PX solid rgb(102,102,102);
-  border-left:6PX solid rgb(102,102,102);
-  left:0;
-  animation: circle_left 3s linear infinite;
+
+.fingerprint-spinner .spinner-ring:nth-child(7) {
+  height: calc(42PX / 9 + 6 * 42PX / 9);
+  width: calc(42PX / 9 + 6 * 42PX / 9);
+  animation-delay: calc(50ms * 7);
 }
-@keyframes circle_right{
+
+.fingerprint-spinner .spinner-ring:nth-child(8) {
+  height: calc(42PX / 9 + 7 * 42PX / 9);
+  width: calc(42PX / 9 + 7 * 42PX / 9);
+  animation-delay: calc(50ms * 8);
+}
+
+.fingerprint-spinner .spinner-ring:nth-child(9) {
+  height: calc(42PX / 9 + 8 * 42PX / 9);
+  width: calc(42PX / 9 + 8 * 42PX / 9);
+  animation-delay: calc(50ms * 9);
+}
+
+@keyframes fingerprint-spinner-animation {
+  100% {
+    transform: rotate( 360deg );
+  }
+}
+@keyframes appear {
   0%{
-      transform: rotate(-135deg);
-  }
-  50%,100%{
-      transform: rotate(45deg);
-  }
-}
-@keyframes circle_left{
-  0%,50%{
-      transform: rotate(-135deg);
+    opacity: 0;
   }
   100%{
-      transform: rotate(45deg);
+    opacity: 1;
   }
 }

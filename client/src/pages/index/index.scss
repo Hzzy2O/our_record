@@ -5,6 +5,11 @@
     height: 100px;
     display: grid;
     place-items: center;
+    padding-top: 20PX;
+    .year_txt{
+      font-size: 25PX;
+      font-weight: 700;
+    }
   }
   .swiper{
     position: relative;

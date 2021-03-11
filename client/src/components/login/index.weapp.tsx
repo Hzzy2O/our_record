@@ -25,14 +25,16 @@ const LoginButton: FC<Props> = ({status,text,click}) =>{
           {/* <View className='left'></View>
           <View className='right'></View>
           <View className='progress'></View> */}
-          <View className='circle_process'>
-            <View className='right'>
-            <View className='rightcircle'></View>
-            </View>
-            <View className='left'>
-            <View className='leftcircle'></View>
-            </View>
-            
+          <View className='fingerprint-spinner'>
+            <View className='spinner-ring'></View>
+            <View className='spinner-ring'></View>
+            <View className='spinner-ring'></View>
+            <View className='spinner-ring'></View>
+            <View className='spinner-ring'></View>
+            <View className='spinner-ring'></View>
+            <View className='spinner-ring'></View>
+            <View className='spinner-ring'></View>
+            <View className='spinner-ring'></View>
           </View>
             
         </View>
