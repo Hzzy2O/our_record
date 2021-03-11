@@ -19,7 +19,7 @@ const getdate = () => {
   let date = new Date();
   return {
     day:date.getDate(),
-    mon:date.getMonth(),
+    mon:date.getMonth()+1,
     yea:date.getFullYear()
   }
 }

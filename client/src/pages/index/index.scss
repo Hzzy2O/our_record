@@ -14,13 +14,39 @@
   .swiper{
     position: relative;
     overflow: visible;
-    height: 330PX;
+    height: 60vh;
   }
   .s_item{
     overflow: visible;
     padding-top: 25PX;
     display: flex;
     justify-content: center;
+  }
+  .open_cal{
+    display: flex;
+    justify-content: center;
+    margin-top: 10PX;
+    .open_btn{
+      width: 160px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 10PX;
+      padding: 2PX 8PX;
+      padding-top: 3PX;
+      border-radius: 20PX;
+      color: #888888;
+      border: 1px solid rgba(0, 0, 0, 0.212);
+      transition: background .4s ease-in;
+    }
+    .front {
+      color: #888888;
+      background: #fff;
+    }
+    .back{
+      color: #fff;
+      background: #000;
+    }
   }
 }
 .demo-text{

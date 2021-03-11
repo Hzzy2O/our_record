@@ -1,12 +1,134 @@
-.card{
-  background: rgba(210,209,210,.9);
-  border-radius: 10PX;
+.card1 {
   color: #fff;
+  background: rgb(233, 233, 233);
   padding: 30px;
-  width: 360rpx;
-  height: 260PX;
-  box-shadow: 2PX 8px 16PX rgb(210,209,210);
-  .card_top{
-    font-size: 40PX;
+  border-radius: 25PX;
+  width: 420rpx;
+  height: 46.5vh;
+  .card_top {
+    font-size: 44PX;
+  }
+
+  .card_sec {
+    font-size: 28PX;
+  }
+}
+
+.card2 {
+  border-radius: 27PX;
+  width: 420rpx;
+  height: 46.5vh;
+  
+  .c2_box{
+    background: #fff;
+    padding: 30px;
+    border-radius: 25PX;
+    color: #000;
+    width: 420rpx;
+    height: 46.5vh;
+    
+  }
+  .card_top {
+    display: flex;
+    justify-content: center;
+    font-size: 44PX;
+  }
+
+  .card_sec {
+    display: flex;
+    justify-content: center;
+    font-size: 28PX;
+  }
+}
+
+.rotateCtn {
+  position: absolute;
+  width: 480rpx;
+  height: 290PX;
+  transform-style: preserve-3d;
+  .front {
+    animation: front .5s linear 1;
+    backface-visibility: hidden;
+  }
+  
+  .back {
+    animation: back .5s linear 1;
+  }
+}
+
+.frame {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.frame image {
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+}
+
+
+
+@keyframes front {
+  from {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+
+  to {
+    box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
+    transform: rotateY(180deg);
+    opacity: 0;
+  }
+}
+
+@keyframes back {
+  from {
+    box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
+    transform: rotateY(-180deg);
+    opacity: 0;
+  }
+
+  to {
+    box-shadow: none;
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.z1 {
+  z-index: 6
+  
+}
+
+.z2 {
+  z-index: 4
+}
+.z2 .card1{
+  box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
+}
+
+.cal_box{
+  width: 100%;
+  margin-top: 18PX;
+  .cal_grid{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    grid-template-rows: repeat(7,34PX);
+    .cal_item{
+      display: flex;
+      justify-content: center;
+      font-size: 18PX;
+      color: rgb(0, 0, 0);
+      opacity: 0.4;
+      &:nth-child(7n){
+        color: rgb(252, 45, 131);
+      }
+      &:nth-child(7n+1){
+        color: rgb(0, 68, 255);
+      }
+    }
   }
 }

@@ -5,13 +5,27 @@ import './index.scss'
 import SearchNav from "../../components/search/index.weapp"
 import Card from "../../components/card/index.weapp"
 import {getMonth} from "../../apis"
+import {Month} from "../../types"
+import classnames from "classnames";
+import {throttle} from "lodash"
+
+type index = {
+  keyword:string;
+  inputing:boolean;
+  year:number;
+  months:Array<Month>
+}
+
 
 export default class Index extends Component {
-
   state = {
     keyword:'',
     inputing:false,
-    year:2021
+    year:2021,
+    months:[],
+    mon_status:0,
+    transing:false, //状态变化中
+    loading:false
   }
 
   changeStatus = inputing => {
@@ -32,9 +46,37 @@ export default class Index extends Component {
     console.log(123);
   }
   
+  changeMonStatus(){
+    const {mon_status,transing} = this.state;
+    if(transing)return
+    let status;
+    if(mon_status===0){
+      this.setState({
+        mon_status:3,
+        transing:true
+      })
+      status = 1;
+    } else {
+      this.setState({
+        mon_status:4,
+        transing:true
+      })
+      status = 0;
+    }
+    setTimeout(() => {
+      this.setState({
+        mon_status:status,
+        transing:false
+      })
+    }, 500);
+  }
+
+  //初始化
   async init(){
-    const res = await getMonth()
-    console.log(res)
+    const {data} = await getMonth()
+    this.setState({
+      months:data
+    })
   }
   componentDidMount(){
     this.setState({
@@ -43,15 +85,21 @@ export default class Index extends Component {
     
     this.init()
   }
-
   render () {
-    const {keyword,inputing,year} = this.state;
-    let count = 0;
-    let months = Array.from({length:12},()=>++count);
+    let {keyword,inputing,year,months,mon_status} = this.state;
 
     const {windowWidth} = Taro.getSystemInfoSync();
-    let mgpx = (windowWidth*0.152) + 'px'
 
+    //边距适配
+    let mgpx = (windowWidth*0.122) + 'px'
+
+    //当前月
+    let cur_mon = new Date().getMonth()
+    const btncls = classnames({
+      'open_btn':true,
+      'front':mon_status,
+      'back':!mon_status
+    })
     return (
       <View className='index'>
         <SearchNav keyword={keyword} inputing={inputing} search={this.search} bindInput={this.bindInput}
@@ -65,15 +113,21 @@ export default class Index extends Component {
           indicatorActiveColor='#333'
           previousMargin={mgpx}
           nextMargin={mgpx}
+          current={cur_mon}
           >
           {
             months.map(e=>{
               return <SwiperItem className='s_item'>
-                <Card year={year} month={e}></Card>
+                <Card monthData={e} monStatus={mon_status}></Card>
               </SwiperItem>
             })
           }
         </Swiper>
+        <View className='open_cal'>
+          <View className={btncls} onClick={this.changeMonStatus.bind(this)}>
+            <Text>{mon_status ? '日历':'返回'}</Text>
+          </View>
+        </View>
       </View>
     )
   }

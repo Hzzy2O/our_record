@@ -7,7 +7,7 @@ import "./index.scss"
 
 type Props = {
   status : number;
-  text : string,
+  text : string;
   click :any
 }
 
