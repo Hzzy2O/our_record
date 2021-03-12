@@ -8,6 +8,7 @@ import {getMonth} from "../../apis"
 import {Month} from "../../types"
 import classnames from "classnames";
 import {throttle} from "lodash"
+import Loading from "../../components/loading/index.weapp"
 
 type index = {
   keyword:string;
@@ -77,6 +78,7 @@ export default class Index extends Component {
     this.setState({
       months:data
     })
+    console.log(Taro.getApp())
   }
   componentDidMount(){
     this.setState({
@@ -128,6 +130,7 @@ export default class Index extends Component {
             <Text>{mon_status ? '日历':'返回'}</Text>
           </View>
         </View>
+        <Loading />
       </View>
     )
   }

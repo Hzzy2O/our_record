@@ -6,3 +6,7 @@ export type Month = {
   days:number;
   bt_year:number;
 }
+
+export interface Owner{
+  
+}

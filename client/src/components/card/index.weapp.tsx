@@ -33,6 +33,7 @@ const Card: FC<Props> = ({monStatus,monthData}) =>{
   //结构月份数据
   const {month,days,color,desc,bt_year} = monthData;
   
+  let isToday = 1;
   let rdc_day = new Date(`${bt_year}-${month}-1`).getDay()-1;
   return (
     <View className='rotateCtn'>
@@ -43,6 +44,17 @@ const Card: FC<Props> = ({monStatus,monthData}) =>{
         </View>
         <View className='card_sec'>
           <Text>{desc}</Text>
+        </View>
+        <View className='card_ft'>
+          <View className='day_progress'>
+            <View className='progress_box'>
+              <View className='progress_line' style={{width:'50%'}}></View>
+            </View>
+            <View>
+                1/{days}
+            </View>
+          </View>
+          <View className='iconfont iconshare-more' style='font-size:30px;color:#fff;'></View>
         </View>
       </View>
       </View>
@@ -69,6 +81,7 @@ const Card: FC<Props> = ({monStatus,monthData}) =>{
                 }
               </View>
             </View>
+            
           </View>
         </View>
       </View>

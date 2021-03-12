@@ -1,10 +1,11 @@
 .card1 {
   color: #fff;
-  background: rgb(233, 233, 233);
+  background: rgb(226, 225, 225);
   padding: 30px;
   border-radius: 25PX;
   width: 420rpx;
   height: 46.5vh;
+  position: relative;
   .card_top {
     font-size: 44PX;
   }
@@ -112,6 +113,7 @@
 .cal_box{
   width: 100%;
   margin-top: 18PX;
+  height: 25vh;
   .cal_grid{
     width: 100%;
     display: grid;
@@ -131,4 +133,33 @@
       }
     }
   }
+}
+
+.card_ft{
+  display: flex;
+  width: calc(100% - 60px);
+  justify-content:space-between;
+  position: absolute;
+  bottom: 1vh;
+  left: 30px;
+  font-size: 18PX;
+  .day_progress{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    .progress_box{
+      width: 160rpx;
+      margin-right: 20rpx;
+      height: 5PX;
+      background: rgb(235, 234, 234);
+      border-radius:25PX;
+      overflow: hidden;
+      .progress_line{
+        border-radius:25PX;
+        height: 100%;
+        background: #fff;
+      }
+    }
+  }
+  
 }
