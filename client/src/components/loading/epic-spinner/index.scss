@@ -104,8 +104,10 @@
   }
 }
 .breeding-rhombus-spinner {
-  height: 65px;
-  width: 65px;
+  --color:#ff1d5e;
+  --size:65px;
+  height: var(--size);
+  width: var(--size);
   position: relative;
   transform: rotate(45deg);
 }
@@ -115,12 +117,12 @@
 }
 
 .breeding-rhombus-spinner .rhombus {
-  height: calc(65px / 7.5);
-  width: calc(65px / 7.5);
+  height: calc(var(--size) / 7.5);
+  width: calc(var(--size) / 7.5);
   animation-duration: 2000ms;
-  top: calc(65px / 2.3077);
-  left: calc(65px / 2.3077);
-  background-color: #ff1d5e;
+  top: calc(var(--size) / 2.3077);
+  left: calc(var(--size) / 2.3077);
+  background-color: var(--color);
   position: absolute;
   animation-iteration-count: infinite;
 }
@@ -170,12 +172,12 @@
 }
 
 .breeding-rhombus-spinner .rhombus.big {
-  height: calc(65px / 3);
-  width: calc(65px / 3);
+  height: calc(var(--size) / 3);
+  width: calc(var(--size) / 3);
   animation-duration: 2000ms;
-  top: calc(65px / 3);
-  left: calc(65px / 3);
-  background-color: #ff1d5e;
+  top: calc(var(--size) / 3);
+  left: calc(var(--size) / 3);
+  background-color: var(--color);
   animation: breeding-rhombus-spinner-animation-child-big 2s infinite;
   animation-delay: 0.5s;
 }

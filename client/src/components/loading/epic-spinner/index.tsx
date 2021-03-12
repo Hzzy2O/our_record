@@ -11,7 +11,7 @@ type Props = {
 }
 export const BreedingRhombusSpinner:FC<Props>  = ({}) =>{
   return (
-    <View className='breeding-rhombus-spinner'>
+    <View className='breeding-rhombus-spinner' >
       <View className='rhombus child-1'></View>
       <View className='rhombus child-2'></View>
       <View className='rhombus child-3'></View>
