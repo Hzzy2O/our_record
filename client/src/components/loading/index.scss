@@ -1,9 +1,10 @@
 .loading_container{
   position: absolute;
-  top: 0;
+  top: -5vh;
   width: 100vw;
-  height: 100vh;
+  height: 105vh;
   background: #fff;
+  display: flex;
   justify-content: center;
   align-items: center;
 }

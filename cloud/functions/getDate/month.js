@@ -2,13 +2,18 @@ module.exports =  async ({methods,db,data}) => {
   switch (methods) {
     case 'get':
         try {
-          console.log(data)
-          return await db.orderBy('month', 'asc')
+          return await db.collection('months').orderBy('month', 'asc')
           .get()
         } catch (e) {
           return e
         }
-      break;
+    case 'update':
+      try {
+        return await db.orderBy('month', 'asc')
+        .get()
+      } catch (e) {
+        return e
+      }
     default:
       break;
   }

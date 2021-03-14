@@ -25,6 +25,7 @@ export default class Index extends Component {
     year:2021,
     months:[],
     mon_status:0,
+    btn_status:false,
     transing:false, //状态变化中
     loading:false
   }
@@ -48,7 +49,7 @@ export default class Index extends Component {
   }
   
   changeMonStatus(){
-    const {mon_status,transing} = this.state;
+    const {mon_status,transing,btn_status} = this.state;
     if(transing)return
     let status;
     if(mon_status===0){
@@ -67,17 +68,20 @@ export default class Index extends Component {
     setTimeout(() => {
       this.setState({
         mon_status:status,
-        transing:false
+        transing:false,
+        btn_status:!btn_status
       })
-    }, 500);
+    }, 450);
   }
 
   //初始化
   async init(){
+    this.setState({loading:true})
     const {data} = await getMonth()
     this.setState({
       months:data
-    })
+    },()=>
+    this.setState({loading:false}))
     console.log(Taro.getApp())
   }
   componentDidMount(){
@@ -88,7 +92,7 @@ export default class Index extends Component {
     this.init()
   }
   render () {
-    let {keyword,inputing,year,months,mon_status} = this.state;
+    let {keyword,inputing,year,months,mon_status,loading,btn_status} = this.state;
 
     const {windowWidth} = Taro.getSystemInfoSync();
 
@@ -99,8 +103,8 @@ export default class Index extends Component {
     let cur_mon = new Date().getMonth()
     const btncls = classnames({
       'open_btn':true,
-      'front':mon_status,
-      'back':!mon_status
+      'front':btn_status,
+      'back':!btn_status
     })
     return (
       <View className='index'>
@@ -127,10 +131,10 @@ export default class Index extends Component {
         </Swiper>
         <View className='open_cal'>
           <View className={btncls} onClick={this.changeMonStatus.bind(this)}>
-            <Text>{mon_status ? '日历':'返回'}</Text>
+            <Text>{btn_status ? '日历':'返回'}</Text>
           </View>
         </View>
-        <Loading />
+        <Loading loading={loading}/>
       </View>
     )
   }

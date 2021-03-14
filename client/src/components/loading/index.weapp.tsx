@@ -8,18 +8,18 @@ import { BreedingRhombusSpinner,SwappingSquaresSpinner ,
 import "./index.scss"
 
 
-const Loading = ({}) =>{
+const Loading = ({loading}) =>{
   const cls = classnames({
     'loading_container':true,
   })
-  
+  let number = Math.random()*5 | 0;
   return (
-    <View className={cls}>
-      <BreedingRhombusSpinner color={'red'} size={'23px'}/>
-      {/* <SwappingSquaresSpinner color={'red'} size={'23px'}/>
-      <FulfillingBouncingCircleSpinner color={'red'} size={'23px'}/>
-      <LoopingRhombusesSpinner color={'red'} size={'23px'}/>
-      <ScalingSquaresSpinner color={'red'} size={'23px'}/> */}
+    loading&&<View className={cls}>
+      {number===0&&<BreedingRhombusSpinner color={'red'} size={'23px'}/>}
+      {number===1&&<SwappingSquaresSpinner color={'red'} size={'23px'}/>}
+      {number===2&&<FulfillingBouncingCircleSpinner color={'red'} size={'23px'}/>}
+      {number===3&&<LoopingRhombusesSpinner color={'red'} size={'23px'}/>}
+      {number===4&&<ScalingSquaresSpinner color={'red'} size={'23px'}/>}
     </View>
   )
 }

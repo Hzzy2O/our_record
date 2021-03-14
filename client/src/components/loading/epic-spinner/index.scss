@@ -1,33 +1,33 @@
-.fulfilling-bouncing-circle-spinner, .fulfilling-bouncing-circle-spinner  {
+.fulfilling-bouncing-circle-spinner, .fulfilling-bouncing-circle-spinner ,.circle,.orbit {
   box-sizing: border-box;
 }
 
 .fulfilling-bouncing-circle-spinner {
-  height: 60px;
-  width: 60px;
+  height: 60PX;
+  width: 60PX;
   position: relative;
   animation: fulfilling-bouncing-circle-spinner-animation infinite 4000ms ease;
 }
 
 .fulfilling-bouncing-circle-spinner .orbit {
-  height: 60px;
-  width: 60px;
+  height: 60PX;
+  width: 60PX;
   position: absolute;
   top: 0;
   left: 0;
   border-radius: 50%;
-  border: calc(60px * 0.03) solid #ff1d5e;
+  border: calc(60PX * 0.03) solid #ff1d5e;
   animation: fulfilling-bouncing-circle-spinner-orbit-animation infinite 4000ms ease;
 }
 
 .fulfilling-bouncing-circle-spinner .circle {
-  height: 60px;
-  width: 60px;
+  height: 60PX;
+  width: 60PX;
   color: #ff1d5e;
   display: block;
   border-radius: 50%;
   position: relative;
-  border: calc(60px * 0.1) solid #ff1d5e;
+  border: calc(60PX * 0.1) solid #ff1d5e;
   animation: fulfilling-bouncing-circle-spinner-circle-animation infinite 4000ms ease;
   transform: rotate(0deg) scale(1);
 }
@@ -105,7 +105,7 @@
 }
 .breeding-rhombus-spinner {
   --color:#ff1d5e;
-  --size:65px;
+  --size:65PX;
   height: var(--size);
   width: var(--size);
   position: relative;
@@ -241,8 +241,8 @@
 }
 
 .swapping-squares-spinner {
-  height: 65px;
-  width: 65px;
+  height: 65PX;
+  width: 65PX;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -251,10 +251,10 @@
 }
 
 .swapping-squares-spinner .square {
-  height: calc(65px * 0.25 / 1.3);
-  width:  calc(65px * 0.25 / 1.3);
+  height: calc(65PX * 0.25 / 1.3);
+  width:  calc(65PX * 0.25 / 1.3);
   animation-duration: 1000ms;
-  border: calc(65px * 0.04 / 1.3) solid #ff1d5e;
+  border: calc(65PX * 0.04 / 1.3) solid #ff1d5e;
   margin-right: auto;
   margin-left: auto;
   position: absolute;
@@ -309,8 +309,8 @@
 }
 
 .scaling-squares-spinner {
-  height: 65px;
-  width: 65px;
+  height: 65PX;
+  width: 65PX;
   position: relative;
   display: flex;
   flex-direction: row;
@@ -322,11 +322,11 @@
 }
 
 .scaling-squares-spinner .square {
-  height: calc(65px * 0.25 / 1.3);
-  width: calc(65px * 0.25 / 1.3);
+  height: calc(65PX * 0.25 / 1.3);
+  width: calc(65PX * 0.25 / 1.3);
   margin-right: auto;
   margin-left: auto;
-  border: calc(65px * 0.04 / 1.3) solid #ff1d5e;
+  border: calc(65PX * 0.04 / 1.3) solid #ff1d5e;
   position: absolute;
   animation-duration: 1250ms;
   animation-iteration-count: infinite;
@@ -381,5 +381,51 @@
 @keyframes scaling-squares-spinner-animation-child-4 {
   50% {
     transform: translate(150%,-150%) scale(2,2);
+  }
+}
+
+.looping-rhombuses-spinner, .looping-rhombuses-spinner ,.rhombus {
+  box-sizing: border-box;
+}
+
+.looping-rhombuses-spinner {
+  width: calc(30PX * 4);
+  height: 30PX;
+  position: relative;
+}
+
+.looping-rhombuses-spinner .rhombus {
+  height: 30PX;
+  width: 30PX;
+  background-color: #ff1d5e;
+  left: calc(30PX * 4);
+  position: absolute;
+  margin: 0 auto;
+  border-radius: 2PX;
+  transform: translateY(0) rotate(45deg) scale(0);
+  animation: looping-rhombuses-spinner-animation 2500ms linear infinite;
+}
+
+.looping-rhombuses-spinner .rhombus:nth-child(1) {
+  animation-delay: calc(2500ms * 1 / -1.5);
+}
+
+.looping-rhombuses-spinner .rhombus:nth-child(2) {
+  animation-delay: calc(2500ms * 2 / -1.5);
+}
+
+.looping-rhombuses-spinner .rhombus:nth-child(3) {
+  animation-delay: calc(2500ms * 3 / -1.5);
+}
+
+@keyframes looping-rhombuses-spinner-animation {
+  0% {
+    transform: translateX(0) rotate(45deg) scale(0);
+  }
+  50% {
+    transform: translateX(-233%) rotate(45deg) scale(1);
+  }
+  100% {
+    transform: translateX(-466%) rotate(45deg) scale(0);
   }
 }

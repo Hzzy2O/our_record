@@ -11,9 +11,31 @@ cloud.init({
 })
 const db = cloud.database()
 
-const table = db.collection('months');
+const table = db.collection('days');
 
-
+// function getDay(year,month){
+//     var d = new Date(year,month,1,0,0,0);
+//     var yD = new Date(d-1000);  //yD是前一天
+//     return yD.getDate();
+//   }
+//   var en_mon_arr = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Spt","Oct","Nov","Dec"];
+//   for (let i = 1; i <= 12; i++) {
+//     for(let j = getDay(2021,i);j>0;j--){
+//       table.add({
+//         data:{
+//           bt_month:i,
+//           bt_year:2021,
+//           day:j,
+//           title:'',
+//           content:'',
+//           icon:'',
+//           text_style:null,
+//           location:null
+//         }
+//       })
+//       .then(res=>console.info(res)).catch(err=>console.warn(err))
+//     }
+//   }
 /**
  * 这个示例将经自动鉴权过的小程序用户 openid 返回给小程序端
  * 
@@ -24,7 +46,7 @@ exports.main = async (event, context) => {
   
   // 可执行其他自定义逻辑
   // console.log 的内容可以在云开发云函数调用日志查看
-
+  
   // 获取 WX Context (微信调用上下文)，包括 OPENID、APPID、及 UNIONID（需满足 UNIONID 获取条件）等信息
   const wxContext = cloud.getWXContext()
 
@@ -37,23 +59,3 @@ exports.main = async (event, context) => {
   }
 }
 
-// function getDay(year,month){
-  //   var d = new Date(year,month,1,0,0,0);
-  //   var yD = new Date(d-1000);  //yD是前一天
-  //   return yD.getDate();
-  // }
-  // var en_mon_arr = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Spt","Oct","Nov","Dec"];
-  // for (let i = 1; i <= 12; i++) {
-  //   table.add({
-  //     data:{
-  //       month:i,
-  //       bt_year:2021,
-  //       days:getDay(2021,i),
-  //       color:'#D2D2D2',
-  //       pic:'',
-  //       desc:en_mon_arr[i-1].toUpperCase()
-  //     }
-  //   })
-  //   .then(res=>console.info(res)).catch(err=>console.warn(err))
-    
-  // }

@@ -49,6 +49,7 @@
   transform-style: preserve-3d;
   .front {
     animation: front .5s linear 1;
+    animation-fill-mode : forwards;
     backface-visibility: hidden;
   }
   
@@ -72,12 +73,14 @@
 
 
 @keyframes front {
-  from {
+  0% {
     transform: rotateY(0deg);
     opacity: 1;
   }
-
-  to {
+  50%{
+    box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
+  }
+  100% {
     box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
     transform: rotateY(180deg);
     opacity: 0;
@@ -106,6 +109,9 @@
 .z2 {
   z-index: 4
 }
+.back .card2{
+  box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
+}
 .z2 .card1{
   box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
 }
@@ -125,6 +131,7 @@
       font-size: 18PX;
       color: rgb(0, 0, 0);
       opacity: 0.4;
+      
       &:nth-child(7n){
         color: rgb(252, 45, 131);
       }

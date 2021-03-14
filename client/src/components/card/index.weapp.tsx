@@ -35,6 +35,9 @@ const Card: FC<Props> = ({monStatus,monthData}) =>{
   
   let isToday = 1;
   let rdc_day = new Date(`${bt_year}-${month}-1`).getDay()-1;
+  let arr1 = Array.from({length:rdc_day},()=>0);
+  let arr2 = Array.from({length:days},(v, i) => ++i);
+  let arr3 = [...arr1,...arr2]
   return (
     <View className='rotateCtn'>
       <View className={classnames(card1)}>
@@ -69,14 +72,9 @@ const Card: FC<Props> = ({monStatus,monthData}) =>{
             </View>
             <View className='cal_box'>
               <View className='cal_grid'>
-                {
-                  Array.from({length:rdc_day},()=>0).map(e=>{
-                    return <View className='cal_item'>{e>0&&e}</View>
-                  })
-                }
                 { 
-                  Array.from({length:days},(v, i) => ++i).map(e=>{
-                    return <View className='cal_item'>{e}</View>
+                  arr3.map(e=>{
+                    return <View className='cal_item' style={{visibility:e>0?"visible":"hidden"}}>{e}</View>
                   })
                 }
               </View>

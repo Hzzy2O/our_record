@@ -9,7 +9,8 @@ const monthCURD = require("./month")
 exports.main = async (event, context) => {
   const {func_name,db_name,data} = event;
   const info = {
-    db:db.collection(db_name),
+    db:db,
+    db_name,
     data,
     methods:func_name
   }
