@@ -14,15 +14,12 @@ export default class Entry extends Component {
     text:'login',
     clk:false
   }
-
-  
-
   componentDidShow () { }
 
   componentDidHide () { }
 
   async login(){
-    if(this.state.clk)return
+    if(this.state.status===3)return
     this.setState({
       status: 1,
       text:''
@@ -40,6 +37,11 @@ export default class Entry extends Component {
           })
         }, 500);
       }, 2000);
+    } else{
+      this.setState({
+        status: 3,
+        text:'error'
+      });
     }
       
   }
@@ -55,27 +57,3 @@ export default class Entry extends Component {
   }
 }
 
-// Taro.cloud
-//       .callFunction({
-//         name: "login"
-//       })
-//       .then(res => {
-//         let {openid} = res.result as any
-//         wx.setClipboardData({
-//           data: openid,
-//           success: function() {
-//             // self.setData({copyTip:true}),
-//             wx.showModal({
-//             title: '提示',
-//             content: '复制成功',
-//             success: function(res) {
-//               if (res.confirm) {
-//                 console.log('确定')
-//               } else if (res.cancel) {
-//                 console.log('取消')
-//               }
-//             }
-//           })
-//         }})
-//       })
-    

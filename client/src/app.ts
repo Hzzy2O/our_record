@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Taro, { Config } from '@tarojs/taro'
-import 'taro-ui/dist/style/index.scss'
 
 import './app.scss'
 import "./assets/font/iconfont.css"

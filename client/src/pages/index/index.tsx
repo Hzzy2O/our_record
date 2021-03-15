@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Taro, { Config } from '@tarojs/taro'
-import { View, Text ,Swiper, SwiperItem , Canvas} from '@tarojs/components'
+import { View, Text ,Swiper, SwiperItem } from '@tarojs/components'
+import { AtList, AtListItem } from "taro-ui"
 import './index.scss'
 import SearchNav from "../../components/search/index.weapp"
 import Card from "../../components/card/index.weapp"
@@ -10,7 +11,10 @@ import classnames from "classnames";
 
 import Loading from "../../components/loading/index.weapp"
 import CanvasCircle from "../../components/canvas/index.weapp"
+import PuppComponent from "../../components/pupp/index.weapp"
+import { globalData ,COLORS } from "../../utils/common"
 
+let {windowWidth,windowHeight} = globalData;
 type index = {
   keyword:string;
   inputing:boolean;
@@ -25,11 +29,12 @@ export default class Index extends Component {
     inputing:false,
     year:2021,
     months:[],
-    mon_status:0,
+    mon_status:1,
     btn_status:false,
     transing:false, //状态变化中
     loading:false,
-    cir:[] as any
+    cir:[] as any,
+    show1:false
   }
 
   changeStatus = inputing => {
@@ -47,8 +52,18 @@ export default class Index extends Component {
   }
   search = ()=>{}
 
-  //滑动添加画布的圆
-  
+  hidePupp(show){
+    this.setState({
+      [show]:false
+    })
+  }
+
+  openPupp(show){
+    console.log(show)
+    this.setState({
+      [show]:true
+    })
+  }
   
   changeMonStatus(){
     const {mon_status,transing,btn_status} = this.state;
@@ -79,13 +94,12 @@ export default class Index extends Component {
   //初始化数据
   async init(){
     this.setState({loading:true})
-    const {data} = await getMonth()
-    console.log(data)
+    const {list} = await getMonth()
+    console.log(list)
     this.setState({
-      months:data
+      months:list
     },()=>
     this.setState({loading:false}))
-    console.log(Taro.getApp())
   }
   componentDidMount(){
     this.setState({
@@ -94,7 +108,7 @@ export default class Index extends Component {
     this.init()
   }
   render () {
-    let {keyword,inputing,year,months,mon_status,loading,btn_status} = this.state;
+    let {keyword,inputing,year,months,mon_status,loading,btn_status,show1} = this.state;
 
     const {windowWidth} = Taro.getSystemInfoSync();
 
@@ -109,7 +123,7 @@ export default class Index extends Component {
       'back':!btn_status
     })
     return (
-      <View className='index'>
+      <View className='index' style={{width:windowWidth,height:windowHeight}}>
         <SearchNav keyword={keyword} inputing={inputing} search={this.search} bindInput={this.bindInput}
           changeStatus={this.changeStatus}></SearchNav>
         <View className='year_cho'>
@@ -126,7 +140,7 @@ export default class Index extends Component {
           {
             months.map(e=>{
               return <SwiperItem className='s_item'>
-                <Card monthData={e} monStatus={mon_status}></Card>
+                <Card monthData={e} monStatus={mon_status} openClk={this.openPupp.bind(this,'show1')}></Card>
               </SwiperItem>
             })
           }
@@ -138,6 +152,23 @@ export default class Index extends Component {
         </View>
         <Loading loading={loading}/>
         <CanvasCircle />
+        <PuppComponent show={show1} cancel={this.hidePupp.bind(this,'show1')}>
+          <AtList hasBorder={false}>
+            <AtListItem title='pic' arrow='right' />
+            <AtListItem
+              title='color'
+              hasBorder={false}
+            />
+            <View className='color-list'>
+              {
+                COLORS.map(e=>{
+                  return <View className='color-cir' style={{background:e}}></View>
+                })
+              }
+             
+            </View>
+          </AtList>
+        </PuppComponent>
       </View>
     )
   }

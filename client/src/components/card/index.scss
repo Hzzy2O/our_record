@@ -19,8 +19,8 @@
   border-radius: 27PX;
   width: 420rpx;
   height: 46.5vh;
-  
   .c2_box{
+    box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
     background: #fff;
     padding: 30px;
     border-radius: 25PX;
@@ -81,7 +81,6 @@
     box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
   }
   100% {
-    box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
     transform: rotateY(180deg);
     opacity: 0;
   }
@@ -103,17 +102,13 @@
 
 .z1 {
   z-index: 6
-  
 }
 
 .z2 {
   z-index: 4
 }
-.back .card2{
-  box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
-}
-.z2 .card1{
-  box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
+.z2 .card2{
+  box-shadow: none;
 }
 
 .cal_box{

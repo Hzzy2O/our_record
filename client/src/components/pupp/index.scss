@@ -1,0 +1,36 @@
+.PuppComponent{
+ top: 0;
+ position: absolute;
+ z-index: 810;
+ background: rgba(83, 63, 63, 0.105);
+ opacity: 1;
+ transition: all .4s;
+ .m-area{
+  height: 100vh;
+  width: 70vw; 
+  left:calc(50% - 35vw);
+  background: transparent;
+  border-radius: 10PX;
+  transition: all .4s;
+ }
+ .m-view{
+  overflow: hidden;
+  height: 50px; 
+  width: 100%; 
+  height: 40vh;
+  background: white;
+  border-radius: 10PX;
+ }
+}
+.PuppHidden{
+  opacity: 0;
+  z-index: -23;
+
+  .m-area{
+    top: 101vh !important;
+  }
+  .at-list__item .at-list__item--no-border{
+    padding-top: 10px;
+  }
+  
+}

@@ -5,6 +5,7 @@ export type Month = {
   pic:string;
   days:number;
   bt_year:number;
+  daysArr:any []; 
 }
 
 export interface Owner{

@@ -35,6 +35,9 @@ $color:#00D5D1;
   &.success_btn{
     background: $color;
   }
+  &.error_btn{
+    border-color: rgb(236, 36, 53);
+  }
 }
 
 

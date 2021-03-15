@@ -8,9 +8,10 @@ import "./index.scss"
 type Props = {
   monthData:Month;
   monStatus:number;
+  openClk:any;
 }
 
-const Card: FC<Props> = ({monStatus,monthData}) =>{
+const Card: FC<Props> = ({monStatus,monthData,openClk}) =>{
   const cls = classnames({
     'card1':true,
     'flip-container':true
@@ -31,13 +32,12 @@ const Card: FC<Props> = ({monStatus,monthData}) =>{
     'back':monStatus===4
   })
   //结构月份数据
-  const {month,days,color,desc,bt_year} = monthData;
+  const {month,days,color,desc,bt_year,daysArr} = monthData;
   
   let isToday = 1;
   let rdc_day = new Date(`${bt_year}-${month}-1`).getDay()-1;
   let arr1 = Array.from({length:rdc_day},()=>0);
-  let arr2 = Array.from({length:days},(v, i) => ++i);
-  let arr3 = [...arr1,...arr2]
+  daysArr.sort((a,b)=>a.day-b.day)
   return (
     <View className='rotateCtn'>
       <View className={classnames(card1)}>
@@ -57,7 +57,7 @@ const Card: FC<Props> = ({monStatus,monthData}) =>{
                 1/{days}
             </View>
           </View>
-          <View className='iconfont iconshare-more' style='font-size:30px;color:#fff;'></View>
+          <View onClick={openClk.bind(this)} className='iconfont iconshare-more' style='font-size:30px;color:#fff;'></View>
         </View>
       </View>
       </View>
@@ -72,9 +72,14 @@ const Card: FC<Props> = ({monStatus,monthData}) =>{
             </View>
             <View className='cal_box'>
               <View className='cal_grid'>
+                {
+                  arr1.map(e=>{
+                    return <View className='cal_item' style={{visibility:"hidden"}}>{e}</View>
+                  })
+                }
                 { 
-                  arr3.map(e=>{
-                    return <View className='cal_item' style={{visibility:e>0?"visible":"hidden"}}>{e}</View>
+                  daysArr.map(e=>{
+                    return <View className='cal_item' style={{visibility:e.day>0?"visible":"hidden"}}>{e.day}</View>
                   })
                 }
               </View>

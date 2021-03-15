@@ -3,10 +3,12 @@ import Taro, { Component } from '@tarojs/taro'
 import { Canvas } from '@tarojs/components'
 import { getCanvasCtx, Circle } from "../../utils/canvas"
 import { globalData } from "../../utils/common"
+import classnames from "classnames";
 import "./index.scss"
 let cir: any[] = []
 class CanvasCircle extends React.Component {
 
+  
   draw(e) {
     e = e.touches[0];
     // const {cir} = this.state;
@@ -15,7 +17,6 @@ class CanvasCircle extends React.Component {
       let rdh = Math.random() * 10 + 10;
       let r = Math.random() * colo.length | 0;
       cir.push(new Circle(e.x, e.y, rdh, colo[r]));
-
     }
   }
   //绘制背景
@@ -47,8 +48,10 @@ class CanvasCircle extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-    };
+    
+  }
+  state = {
+    istouch:false
   }
   componentDidMount() {
     this.drawProgressbg()
@@ -58,8 +61,13 @@ class CanvasCircle extends React.Component {
   // 此处省略n行无用代码
 
   render() {
+    const {istouch} = this.state;
+    const cls = classnames({
+      'canvas':true,
+      'canavs-top':istouch
+    })
     return (
-      <Canvas className='canvas' style={{ width: globalData.windowWidth + "PX", height: globalData.windowHeight + "PX" }} onTouchStart={this.draw.bind(this)} onTouchMove={this.draw.bind(this)} type="2d" id='canvas'></Canvas>
+      <Canvas className={cls} style={{ width: globalData.windowWidth + "PX", height: globalData.windowHeight + "PX" }} onTouchStart={this.draw.bind(this)} onTouchMove={this.draw.bind(this)} type="2d" id='canvas'></Canvas>
     )
   }
 }
