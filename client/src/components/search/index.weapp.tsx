@@ -29,7 +29,6 @@ const SearchNav: FC<Props> = ({keyword,inputing,search,changeStatus,bindInput}) 
     'search':true,
   })
   let res = Taro.getSystemInfoSync();
-  console.log(res.model)
   let h_flag = res.model.toLowerCase().includes("iphone x");
   const {day,mon,yea} = getdate();
   return (

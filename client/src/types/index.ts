@@ -8,5 +8,5 @@ export type Month = {
 }
 
 export interface Owner{
-  
+  x:number;
 }

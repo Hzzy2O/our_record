@@ -1,8 +1,13 @@
+
+
 .index{
   font-size: 14PX;
   .year_cho{
-    width: 100%;
+    width: auto;
+    position: absolute;
     height: 100px;
+    width: 100px;
+    left: calc(50% - 50px);
     display: grid;
     place-items: center;
     padding-top: 20PX;
@@ -12,9 +17,11 @@
     }
   }
   .swiper{
-    position: relative;
+    position: absolute;
+    top:20vh;
+    width: 100%;
     overflow: visible;
-    height: 60vh;
+    height: 58vh;
   }
   .s_item{
     overflow: visible;
@@ -25,7 +32,10 @@
   .open_cal{
     display: flex;
     justify-content: center;
-    margin-top: 10PX;
+    position: absolute;
+    top: 80vh;
+    width: 160px;
+    left: calc(50% - 80px);
     .open_btn{
       width: 160px;
       display: flex;
@@ -48,6 +58,7 @@
       background: #000;
     }
   }
+  
 }
 .demo-text{
   border: 1px solid red;

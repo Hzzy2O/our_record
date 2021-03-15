@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
 import Taro, { Config } from '@tarojs/taro'
-import { View, Text ,Swiper, SwiperItem} from '@tarojs/components'
+import { View, Text ,Swiper, SwiperItem , Canvas} from '@tarojs/components'
 import './index.scss'
 import SearchNav from "../../components/search/index.weapp"
 import Card from "../../components/card/index.weapp"
 import {getMonth} from "../../apis"
 import {Month} from "../../types"
 import classnames from "classnames";
-import {throttle} from "lodash"
+
 import Loading from "../../components/loading/index.weapp"
+import CanvasCircle from "../../components/canvas/index.weapp"
 
 type index = {
   keyword:string;
@@ -17,7 +18,7 @@ type index = {
   months:Array<Month>
 }
 
-
+const cir:any[] = []
 export default class Index extends Component {
   state = {
     keyword:'',
@@ -27,7 +28,8 @@ export default class Index extends Component {
     mon_status:0,
     btn_status:false,
     transing:false, //状态变化中
-    loading:false
+    loading:false,
+    cir:[] as any
   }
 
   changeStatus = inputing => {
@@ -43,10 +45,10 @@ export default class Index extends Component {
       keyword:value
     })
   }
+  search = ()=>{}
 
-  search = () =>{
-    console.log(123);
-  }
+  //滑动添加画布的圆
+  
   
   changeMonStatus(){
     const {mon_status,transing,btn_status} = this.state;
@@ -74,10 +76,11 @@ export default class Index extends Component {
     }, 450);
   }
 
-  //初始化
+  //初始化数据
   async init(){
     this.setState({loading:true})
     const {data} = await getMonth()
+    console.log(data)
     this.setState({
       months:data
     },()=>
@@ -88,7 +91,6 @@ export default class Index extends Component {
     this.setState({
       year:new Date().getFullYear()
     })
-    
     this.init()
   }
   render () {
@@ -135,6 +137,7 @@ export default class Index extends Component {
           </View>
         </View>
         <Loading loading={loading}/>
+        <CanvasCircle />
       </View>
     )
   }

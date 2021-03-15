@@ -8,11 +8,8 @@ import Loading from "../loading/index.weapp"
 
 class BaseComponent extends Component {
  
-  constructor(props) {
-    super(props);
-    this.state = {
- 
-    };
+  constructor() {
+    super();
   }
  
   config = {};

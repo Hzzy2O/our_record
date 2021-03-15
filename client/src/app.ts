@@ -4,10 +4,15 @@ import 'taro-ui/dist/style/index.scss'
 
 import './app.scss'
 import "./assets/font/iconfont.css"
-class App extends Component {
 
+import {globalData} from "./utils/common"
+const {windowWidth,windowHeight} = Taro.getSystemInfoSync()
+class App extends Component {
   componentDidMount () {
     if (process.env.TARO_ENV === 'weapp') {
+      globalData.windowHeight = windowHeight;
+      globalData.windowWidth = windowWidth;
+      
       Taro.cloud.init({
         env:'luv-diary-3gasftpi3ec96df4'
       })
