@@ -1,15 +1,18 @@
 .card1 {
   color: #fff;
-  background: rgb(226, 225, 225);
+  // background: rgb(226, 225, 225);
+  background-size: 100% 100%;
   padding: 30px;
   border-radius: 25PX;
   width: 420rpx;
   height: 46.5vh;
   position: relative;
+  transition: background .6s linear;
+  background-size: cover;
   .card_top {
     font-size: 44PX;
   }
-
+  
   .card_sec {
     font-size: 28PX;
   }
@@ -33,17 +36,20 @@
     display: flex;
     justify-content: center;
     font-size: 44PX;
+    z-index: 10;
   }
 
   .card_sec {
     display: flex;
     justify-content: center;
     font-size: 28PX;
+    z-index: 10;
   }
 }
 
 .rotateCtn {
   position: absolute;
+  z-index: 1;
   width: 480rpx;
   height: 290PX;
   transform-style: preserve-3d;
@@ -68,6 +74,15 @@
   height: 100%;
   width: 100%;
   border-radius: 8px;
+  &.card_img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 24PX;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 
@@ -152,8 +167,8 @@
     .progress_box{
       width: 160rpx;
       margin-right: 20rpx;
-      height: 5PX;
-      background: rgb(235, 234, 234);
+      height: 4PX;
+      background: rgba(235, 235, 235, 0.575);
       border-radius:25PX;
       overflow: hidden;
       .progress_line{

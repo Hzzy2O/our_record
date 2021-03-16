@@ -1,8 +1,9 @@
 import React, { FC,memo } from 'react'
 import Taro from '@tarojs/taro'
-import { View, Text, Button } from '@tarojs/components'
+import { View, Text, Button ,Image ,CoverView} from '@tarojs/components'
 import classnames from "classnames";
 import {Month} from "../../types"
+import {getPic} from "../../apis/upload"
 import "./index.scss"
 
 type Props = {
@@ -32,29 +33,31 @@ const Card: FC<Props> = ({monStatus,monthData,openClk}) =>{
     'back':monStatus===4
   })
   //结构月份数据
-  const {month,days,color,desc,bt_year,daysArr} = monthData;
+  const {month,days,color,desc,bt_year,daysArr,pic} = monthData;
   
   let isToday = 1;
   let rdc_day = new Date(`${bt_year}-${month}-1`).getDay()-1;
   let arr1 = Array.from({length:rdc_day},()=>0);
-  daysArr.sort((a,b)=>a.day-b.day)
+  daysArr.sort((a,b)=>a.day-b.day);
+  
+  let count = daysArr.filter(e=>e.title).length;
   return (
     <View className='rotateCtn'>
       <View className={classnames(card1)}>
-        <View className={classnames(cls)}>
-        <View className='card_top'>
+        <View className={classnames(cls)} style={{background:` ${color||'#e2e1e1'} ${pic ? 'url('+pic+')' : ''} no-repeat center fixed`}}>
+        <CoverView className='card_top'>
           <Text>{month}</Text>
-        </View>
-        <View className='card_sec'>
+        </CoverView>
+        <CoverView className='card_sec'>
           <Text>{desc}</Text>
-        </View>
+        </CoverView>
         <View className='card_ft'>
           <View className='day_progress'>
             <View className='progress_box'>
-              <View className='progress_line' style={{width:'50%'}}></View>
+              <View className='progress_line' style={{width:count/days+'%'}}></View>
             </View>
             <View>
-                1/{days}
+                {count}/{days}
             </View>
           </View>
           <View onClick={openClk.bind(this)} className='iconfont iconshare-more' style='font-size:30px;color:#fff;'></View>

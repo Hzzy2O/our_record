@@ -11,7 +11,9 @@ class App extends Component {
     if (process.env.TARO_ENV === 'weapp') {
       globalData.windowHeight = windowHeight;
       globalData.windowWidth = windowWidth;
-      
+      let res = Taro.getSystemInfoSync();
+      let h_flag = res.model.toLowerCase().includes("iphone x");
+      globalData.hScreen =  h_flag?'6.5':'4.5';
       Taro.cloud.init({
         env:'luv-diary-3gasftpi3ec96df4'
       })

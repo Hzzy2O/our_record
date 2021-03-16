@@ -2,16 +2,17 @@
 .index{
   font-size: 14PX;
   position: relative;
-  overflow: hidden;
   .year_cho{
     width: auto;
     position: absolute;
     height: 100px;
     width: 100px;
+    top: 7vh;
     left: calc(50% - 50px);
     display: grid;
     place-items: center;
     padding-top: 20PX;
+    z-index: 2;
     .year_txt{
       font-size: 25PX;
       font-weight: 700;
@@ -19,7 +20,7 @@
   }
   .swiper{
     position: absolute;
-    top:20vh;
+    top:17vh;
     width: 100%;
     overflow: visible;
     height: 58vh;
@@ -34,7 +35,7 @@
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 80vh;
+    top: 77vh;
     width: 160px;
     left: calc(50% - 80px);
     .open_btn{
@@ -59,18 +60,31 @@
       background: #000;
     }
   }
-  .color-list{
-    display: flex;
-    flex-wrap: wrap;
+  .color-tit{
     padding-left: 25rpx;
-    margin-top: -2vh;
+    height: 30PX;
+    line-height: 32PX;
+  }
+  .color-list{
+    display: grid;
+    grid-template-columns: repeat(6,1fr);
+    padding-left: 25rpx;
     .color-cir{
       width: 60rpx;
       height: 60rpx;
       border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       margin: 11rpx 0;
       margin-right: 20rpx;
     }
+  }
+  .bottom_btn{
+    width: 100px;
+    height: 100px;
+    background-image: url(cloud://luv-diary-3gasftpi3ec96df4.6c75-luv-diary-3gasftpi3ec96df4-1305177414/1615879781184.jpeg);
+    background-size: 100% 100%;
   }
 }
 .demo-text{

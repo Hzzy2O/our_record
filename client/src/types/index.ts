@@ -1,4 +1,5 @@
 export type Month = {
+  _id:string;
   month:number;
   color:string;
   desc:string;
@@ -6,6 +7,18 @@ export type Month = {
   days:number;
   bt_year:number;
   daysArr:any []; 
+}
+
+export type Day = {
+  _id:string;
+  bt_month: number;
+  bt_year: number;
+  content: string
+  day: number;
+  icon: string
+  location: any
+  text_style: any
+  title: string
 }
 
 export interface Owner{

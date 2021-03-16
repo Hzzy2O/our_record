@@ -16,28 +16,52 @@ class PuppComponent extends React.Component{
     show : false,
     cancel :()=>{}
   }
+  public state = {
+    y_start:0,
+    y_end:0,
+    ty:false,
+    trans:false
+  }
   constructor(props:Props) {
     super(props);
-    this.state = {
-      t_style:false,
-      ty:0
-    }
   }
-  tChange(e){
-    let rg = (e.detail.y);
+  catchMove(e){
     console.log(e)
-    if(rg>120){
+  }
+
+  tStart(e){
+    this.setState({
+      y_start:e.changedTouches[0].clientY,
+      trans:false
+    })
+  }
+  tEnd(e){
+    this.setState({
+      trans:true
+    })
+    const func = () =>{
+      this.setState({
+        ty:true
+      });
+      Taro.nextTick(() => {
+        this.setState({ ty: false }) // 在当前同步流程结束后，下一个时间片执行
+      })
+    }
+    let y_end = e.changedTouches[0].clientY;
+    let {y_start} = this.state
+    if(y_end / height >= 0.78 && y_end-y_start>120){
       const {cancel} = this.props as any;
       cancel&&cancel()
+      setTimeout(() => {
+        func()
+      }, 400);
     }else{
-      this.setState({
-        ty:0
-      })
+      func()
     }
   }
     render(){
       const {show,cancel } = this.props as any
-      const {ty} = this.state
+      const {ty,trans} = this.state
       const cls1 = classnames({
         'PuppComponent':true,
         'PuppHidden':!show
@@ -46,11 +70,11 @@ class PuppComponent extends React.Component{
         'm-view':true
       })
       return (
-        <View className={cls1} style={{width,height}} onClick={cancel.bind(this)}>
-          <MovableArea className='m-area' style={{top:"50vh"}} onClick={()=>void 0}>
-            <MovableView direction='vertical' className={cls2} scaleMin={1} scaleMax={1}
-            onChange={this.tChange.bind(this)} y={0} out-of-bounds={true}
-            inertia onClick={(e)=>e.preventDefault()}>
+        <View className={cls1} style={{width,height}} onClick={cancel.bind(this)} catchMove>
+          <MovableArea className='m-area' onClick={(e)=>e.stopPropagation()} style={{height:ty?'40vh':'80vh'}}>
+            <MovableView id='mview' direction='vertical' className={cls2} scaleMin={1} scaleMax={1} 
+             y={0} onTouchEnd={this.tEnd.bind(this)} style={{transition:trans?'transform .4s':''}}
+            inertia onClick={(e)=>e.preventDefault()} onTouchStart={this.tStart.bind(this)}>
               {this.props.children}
             </MovableView>
           </MovableArea>

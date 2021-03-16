@@ -6,9 +6,10 @@ import { globalData } from "../../utils/common"
 import classnames from "classnames";
 import "./index.scss"
 let cir: any[] = []
-class CanvasCircle extends React.Component {
+let {windowWidth,windowHeight,hScreen} = globalData;
 
-  
+
+class CanvasCircle extends React.Component {
   draw(e) {
     e = e.touches[0];
     // const {cir} = this.state;
@@ -23,8 +24,9 @@ class CanvasCircle extends React.Component {
   drawProgressbg = async () => {
     // const {cir} = this.state;
     // 使用 .createContext 获取绘图上下文 context
-    let width = globalData.windowWidth, height = globalData.windowHeight;
-    const { canvas, ctx } = await getCanvasCtx('canvas', { width, height });
+    
+    let height = windowHeight * (1-hScreen/100);
+    const { canvas, ctx } = await getCanvasCtx('canvas', { width:windowWidth, height});
     function renderC() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       cir.forEach((e, i) => {
@@ -67,7 +69,7 @@ class CanvasCircle extends React.Component {
       'canavs-top':istouch
     })
     return (
-      <Canvas className={cls} style={{ width: globalData.windowWidth + "PX", height: globalData.windowHeight + "PX" }} onTouchStart={this.draw.bind(this)} onTouchMove={this.draw.bind(this)} type="2d" id='canvas'></Canvas>
+      <Canvas className={cls} style={{ width: globalData.windowWidth + "PX", height: `calc(${windowHeight}PX - ${hScreen}vh)` }} onTouchStart={this.draw.bind(this)} onTouchMove={this.draw.bind(this)} type="2d" id='canvas'></Canvas>
     )
   }
 }

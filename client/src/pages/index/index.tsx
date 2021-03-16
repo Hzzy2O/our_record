@@ -5,8 +5,9 @@ import { AtList, AtListItem } from "taro-ui"
 import './index.scss'
 import SearchNav from "../../components/search/index.weapp"
 import Card from "../../components/card/index.weapp"
-import {getMonth} from "../../apis"
-import {Month} from "../../types"
+import {getMonth,updateMonth} from "../../apis"
+import {upload,getPic} from "../../apis/upload"
+import {Month , Day} from "../../types"
 import classnames from "classnames";
 
 import Loading from "../../components/loading/index.weapp"
@@ -14,7 +15,7 @@ import CanvasCircle from "../../components/canvas/index.weapp"
 import PuppComponent from "../../components/pupp/index.weapp"
 import { globalData ,COLORS } from "../../utils/common"
 
-let {windowWidth,windowHeight} = globalData;
+// let {windowWidth,windowHeight} = globalData;
 type index = {
   keyword:string;
   inputing:boolean;
@@ -28,22 +29,25 @@ export default class Index extends Component {
     keyword:'',
     inputing:false,
     year:2021,
-    months:[],
+    months:[] as Array<Month>,
     mon_status:1,
     btn_status:false,
     transing:false, //状态变化中
     loading:false,
     cir:[] as any,
-    show1:false
+    show1:false,
+    currentMonth:0,
+    currentColor:''
   }
 
+  //搜索框
   changeStatus = inputing => {
     this.setState({
       inputing,
       keyword:''
     })
   }
-
+  //输入绑定
   bindInput = ({detail}) =>{
     let {value} = detail;
     this.setState({
@@ -58,13 +62,51 @@ export default class Index extends Component {
     })
   }
 
-  openPupp(show){
-    console.log(show)
+  //打开弹窗
+  openPupp(show,month){
+    let data = this.state.months[month-1];
     this.setState({
-      [show]:true
+      [show]:true,
+      currentMonth:month,
+      currentColor:data.color
     })
   }
-  
+  setCurrentMonth(key,val){
+    const {currentMonth,months} = this.state;
+    let data = months[currentMonth-1];
+    if(Array.isArray(key)){
+      key.map((e,i)=>data[e]=val[i])
+    }else{
+      data[key] = val;
+    }
+    this.setState({
+      [`months[${currentMonth-1}]`]:data
+    })
+    return {
+      currentMonth
+    }
+  }
+  //改变月份颜色
+  changeCardColor(e){
+    const {currentMonth} = this.setCurrentMonth(['color','pic'],[e,'']);
+    updateMonth({month:currentMonth,color:e,pic:''})
+    this.hidePupp('show1')
+  }
+  //设置卡片照片
+  setMonthPic(){
+    let _this = this;
+    Taro.chooseImage({
+      count:1,
+      async success(res){
+        let ans = await upload(res.tempFilePaths[0]),
+        pic = await getPic(ans);
+        const {currentMonth} = _this.setCurrentMonth('pic',pic);;
+        updateMonth({month:currentMonth,pic})
+        _this.hidePupp('show1')
+      }
+    })  
+  }
+
   changeMonStatus(){
     const {mon_status,transing,btn_status} = this.state;
     if(transing)return
@@ -108,7 +150,7 @@ export default class Index extends Component {
     this.init()
   }
   render () {
-    let {keyword,inputing,year,months,mon_status,loading,btn_status,show1} = this.state;
+    let {keyword,inputing,year,months,mon_status,loading,btn_status,show1,currentColor} = this.state;
 
     const {windowWidth} = Taro.getSystemInfoSync();
 
@@ -123,7 +165,7 @@ export default class Index extends Component {
       'back':!btn_status
     })
     return (
-      <View className='index' style={{width:windowWidth,height:windowHeight}}>
+      <View className='index' >
         <SearchNav keyword={keyword} inputing={inputing} search={this.search} bindInput={this.bindInput}
           changeStatus={this.changeStatus}></SearchNav>
         <View className='year_cho'>
@@ -138,9 +180,9 @@ export default class Index extends Component {
           current={cur_mon}
           >
           {
-            months.map(e=>{
+            months.map((e : Month) => {
               return <SwiperItem className='s_item'>
-                <Card monthData={e} monStatus={mon_status} openClk={this.openPupp.bind(this,'show1')}></Card>
+                <Card monthData={e} monStatus={mon_status} openClk={this.openPupp.bind(this,'show1',e.month)}></Card>
               </SwiperItem>
             })
           }
@@ -150,22 +192,22 @@ export default class Index extends Component {
             <Text>{btn_status ? '日历':'返回'}</Text>
           </View>
         </View>
+        <View className='bottom_btn'></View>
         <Loading loading={loading}/>
         <CanvasCircle />
-        <PuppComponent show={show1} cancel={this.hidePupp.bind(this,'show1')}>
+        <PuppComponent show={show1} cancel={this.hidePupp.bind(this,'show1')} >
           <AtList hasBorder={false}>
-            <AtListItem title='pic' arrow='right' />
-            <AtListItem
-              title='color'
-              hasBorder={false}
-            />
+            <AtListItem title='pic' arrow='right' onClick={this.setMonthPic.bind(this)}/>
+            <View className='color-tit'>color</View>
             <View className='color-list'>
               {
                 COLORS.map(e=>{
-                  return <View className='color-cir' style={{background:e}}></View>
+                  let icon = <View className='iconfont iconduigou' style='font-size:20PX;color:#fff;'></View>
+                  return <View className='color-cir' style={{background:e}} onClick={this.changeCardColor.bind(this,e)}>
+                    { e==currentColor && icon }
+                  </View>
                 })
               }
-             
             </View>
           </AtList>
         </PuppComponent>

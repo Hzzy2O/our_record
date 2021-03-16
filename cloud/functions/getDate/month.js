@@ -19,8 +19,14 @@ module.exports =  async ({methods,db,data}) => {
         }
     case 'update':
       try {
-        return await db.orderBy('month', 'asc')
-        .get()
+        const {month} = data;
+        return await db.collection('months').where({
+          month
+        }).update({
+          data: {
+            ...data
+          },
+        })
       } catch (e) {
         return e
       }
