@@ -104,31 +104,25 @@ export default class Index extends Component {
         updateMonth({month:currentMonth,pic})
         _this.hidePupp('show1')
       }
-    })  
+    }).catch(void 0)
   }
 
-  changeMonStatus(){
+  changeMonStatus(e){
+    e.preventDefault()
     const {mon_status,transing,btn_status} = this.state;
     if(transing)return
     let status;
-    if(mon_status===0){
-      this.setState({
-        mon_status:3,
-        transing:true
-      })
-      status = 1;
-    } else {
-      this.setState({
-        mon_status:4,
-        transing:true
-      })
-      status = 0;
-    }
+    let flag = mon_status===0;
+    this.setState({
+      mon_status:flag ? 3:4,
+      transing:true,
+      btn_status:!btn_status
+    })
+    status = flag ? 1 : 0;
     setTimeout(() => {
       this.setState({
         mon_status:status,
         transing:false,
-        btn_status:!btn_status
       })
     }, 450);
   }
@@ -161,8 +155,8 @@ export default class Index extends Component {
     let cur_mon = new Date().getMonth()
     const btncls = classnames({
       'open_btn':true,
-      'front':btn_status,
-      'back':!btn_status
+      'front_btn':btn_status,
+      'back_btn':!btn_status
     })
     return (
       <View className='index' >
@@ -215,24 +209,3 @@ export default class Index extends Component {
     )
   }
 }
-
-
-// click(){
-//   Taro.createSelectorQuery().select('#canvas').node(res => {
-//     const canvas = res.node
-//     const context = canvas.getContext('2d')
-//     canvas.width = 300//设置宽高，也可以放到wxml中的canvas标签的style中
-//     canvas.hight = 300
-//     lottie.setup(canvas)//要执行动画，必须调用setup,传入canvas对象
-
-//     lottie.loadAnimation({//微信小程序给的接口，调用就完事了，原理不太懂
-//       loop: true,//是否循环播放（选填）
-//       autoplay: true,//是否自动播放（选填）
-//       path:'https://assets1.lottiefiles.com/private_files/lf30_1rkyrmv9.json',//lottie json包的网络链接，可以防止小程序的体积过大，要注意请求域名要添加到小程序的合法域名中
-//       // animationData,
-//       rendererSettings:{
-//         context//es6语法：等同于context:context（必填）
-//       }       
-//     })
-//   }).exec()
-// }

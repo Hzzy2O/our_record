@@ -44,13 +44,13 @@ const Card: FC<Props> = ({monStatus,monthData,openClk}) =>{
   return (
     <View className='rotateCtn'>
       <View className={classnames(card1)}>
-        <View className={classnames(cls)} style={{background:` ${color||'#e2e1e1'} ${pic ? 'url('+pic+')' : ''} no-repeat center fixed`}}>
-        <CoverView className='card_top'>
+        <View className={classnames(cls)} style={{background:` ${color||'#e2e1e1'} ${pic ? 'url('+pic+')' : ''} center/auto 100% no-repeat border-box border-box`}}>
+        <View className='card_top'>
           <Text>{month}</Text>
-        </CoverView>
-        <CoverView className='card_sec'>
+        </View>
+        <View className='card_sec'>
           <Text>{desc}</Text>
-        </CoverView>
+        </View>
         <View className='card_ft'>
           <View className='day_progress'>
             <View className='progress_box'>
