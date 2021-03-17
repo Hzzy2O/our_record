@@ -5,6 +5,9 @@ import classnames from "classnames";
 import { BreedingRhombusSpinner,SwappingSquaresSpinner ,
   FulfillingBouncingCircleSpinner,LoopingRhombusesSpinner,ScalingSquaresSpinner
 } from './epic-spinner/index'
+import { useSelector } from '@tarojs/redux'
+import {GlobalModelState} from "../../models/global"
+
 import "./index.scss"
 
 
@@ -13,6 +16,10 @@ const Loading = ({loading}) =>{
     'loading_container':true,
   })
   let number = Math.random()*5 | 0;
+
+  // useSelector((state:GlobalModelState) => {
+  //   console.log(state)
+  // })
   return (
     loading&&<View className={cls}>
       {number===0&&<BreedingRhombusSpinner color={'red'} size={'23px'}/>}

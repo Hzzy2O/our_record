@@ -1,3 +1,4 @@
+import React from "react"
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 // import { connect } from '@tarojs/redux'
@@ -8,7 +9,7 @@ import Loading from "../../components/loading/index.weapp"
 //     ...newDinary,
 // }))
 
-class NewDinary extends Component {
+class NewDinary extends React.Component {
   config:Config = {
     navigationBarTitleText: '标题'
   }

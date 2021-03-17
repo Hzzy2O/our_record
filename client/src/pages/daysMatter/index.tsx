@@ -1,3 +1,4 @@
+import React from "react"
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 // import { connect } from '@tarojs/redux'
@@ -8,11 +9,11 @@ import Loading from "../../components/loading/index.weapp"
 //     ...daysMatter,
 // }))
 
-class DaysMatter extends Component {
+class DaysMatter extends React.Component {
   config:Config = {
     navigationBarTitleText: '标题'
   }
-  constructor(props: DaysMatterProps) {
+  constructor(props) {
     super(props)
     this.state = {}
   }

@@ -3,19 +3,21 @@
   bottom: 0;
   left: 0;
   right: 0;
-  height: 48px;
+  height: 58PX;
   background: white;
   display: flex;
   padding-bottom: env(safe-area-inset-bottom);
+  box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085),0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
+  justify-content: center;
+  padding: 0 80px;
 }
 
 .tabBarBorder {
-  background-color: rgba(0, 0, 0, 0.33);
   position: absolute;
   left: 0;
   top: 0;
   width: 100%;
-  height: 1px;
+  height: 1PX;
   transform: scaleY(0.5);
 }
 
@@ -26,13 +28,16 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  &:nth-child(3){
+    transform-origin: 50% 50%;
+  }
 }
 
 .tabBarItem cover-image {
-  width: 24px;
-  height: 24px;
+  width: 24PX;
+  height: 24PX;
 }
 
 .tabBarItem cover-view {
-  font-size: 12px;
+  font-size: 12PX;
 }

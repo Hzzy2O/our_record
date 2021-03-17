@@ -3,6 +3,7 @@ import { Reducer} from "redux";
 
 export interface GlobalModelState {
   // 定义state
+  loading:boolean;
 }
 
 export interface GlobalModelType {
@@ -22,7 +23,7 @@ export interface GlobalModelType {
 const GlobalModel: GlobalModelType = {
   namespace: 'global',
   state: {
-
+    loading:false
   },
   effects: {
     // effect函数
