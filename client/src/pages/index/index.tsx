@@ -9,7 +9,7 @@ import {getMonth,updateMonth} from "../../apis"
 import {upload,getPic} from "../../apis/upload"
 import {Month , Day} from "../../types"
 import classnames from "classnames";
-
+import {connect} from 'react-redux'
 import Loading from "../../components/loading/index.weapp"
 import CanvasCircle from "../../components/canvas/index.weapp"
 import PuppComponent from "../../components/pupp/index.weapp"
@@ -22,9 +22,28 @@ type index = {
   year:number;
   months:Array<Month>
 }
+type StateProps = {
+  currentTab:number
+}
 
-const cir:any[] = []
-export default class Index extends Component {
+type DispatchProps = {
+  changeBar: (bool) => void
+}
+
+type Iprop = StateProps & DispatchProps
+
+interface Index {
+  props:Iprop
+}
+@connect(state => ({
+  currentTab: state.global.currentTab,
+}),
+dispatch => ({
+  changeBar(payload:any){
+    dispatch({type:'global/changeBarShow',payload})
+  }
+}))
+class Index extends Component {
   state = {
     keyword:'',
     inputing:false,
@@ -59,7 +78,8 @@ export default class Index extends Component {
   hidePupp(show){
     this.setState({
       [show]:false
-    })
+    },()=>this.props.changeBar({showBar:true}))
+    
   }
 
   //打开弹窗
@@ -69,7 +89,7 @@ export default class Index extends Component {
       [show]:true,
       currentMonth:month,
       currentColor:data.color
-    })
+    },()=>this.props.changeBar({showBar:false}))
   }
   setCurrentMonth(key,val){
     const {currentMonth,months} = this.state;
@@ -134,8 +154,11 @@ export default class Index extends Component {
     console.log(list)
     this.setState({
       months:list
-    },()=>
-    this.setState({loading:false}))
+    },()=>{
+      this.props.changeBar({showBar:true})
+      this.setState({loading:false})
+    }
+    )
   }
   componentDidMount(){
     this.setState({
@@ -209,3 +232,4 @@ export default class Index extends Component {
     )
   }
 }
+export default Index

@@ -1,10 +1,10 @@
 export default {
   pages: [
     'pages/index/index',
+    'pages/newDinary/index',
     'pages/entry/index',
     'pages/test/index',
     'pages/daysMatter/index',
-    'pages/newDinary/index',
   ],
   window: {
     backgroundTextStyle: 'light',

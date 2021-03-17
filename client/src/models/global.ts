@@ -4,6 +4,9 @@ import { Reducer} from "redux";
 export interface GlobalModelState {
   // 定义state
   loading:boolean;
+  currentTab:number;
+  showBar:boolean;
+  showNewDianry:boolean;
 }
 
 export interface GlobalModelType {
@@ -13,7 +16,8 @@ export interface GlobalModelType {
     // xxxxx: Effect xxxx是effect的名字
   },
   reducers: {
-    // xxxx: Reducer<GlobalModelState>
+    setTab: Reducer<GlobalModelState>,
+    changeBarShow: Reducer<GlobalModelState>,
   };
   subscriptions: {
     //xxx: Subscription
@@ -23,7 +27,10 @@ export interface GlobalModelType {
 const GlobalModel: GlobalModelType = {
   namespace: 'global',
   state: {
-    loading:false
+    loading:false,
+    currentTab:0,
+    showBar:false,
+    showNewDianry:false
   },
   effects: {
     // effect函数
@@ -33,6 +40,12 @@ const GlobalModel: GlobalModelType = {
   },
   reducers: {
     // reducer
+    setTab(state,action){
+      return ({...state,...action.payload})
+    },
+    changeBarShow(state,action){
+      return ({...state,...action.payload})
+    },
   }
 };
 

@@ -1,6 +1,6 @@
 import React,{ FC,memo } from "react";
 import Taro, {Component, onThemeChange} from '@tarojs/taro'
-import {View, MovableArea,MovableView} from '@tarojs/components'
+import {View, MovableArea,MovableView,CoverView} from '@tarojs/components'
 import { globalData } from "../../utils/common"
 import classnames from "classnames";
 import "./index.scss"
@@ -70,7 +70,7 @@ class PuppComponent extends React.Component{
         'm-view':true
       })
       return (
-        <View className={cls1} style={{width,height}} onClick={cancel.bind(this)} catchMove>
+        <CoverView className={cls1} style={{width,height}} onClick={cancel.bind(this)} catchMove>
           <MovableArea className='m-area' onClick={(e)=>e.stopPropagation()} style={{height:ty?'40vh':'80vh'}}>
             <MovableView id='mview' direction='vertical' className={cls2} scaleMin={1} scaleMax={1} 
              y={0} onTouchEnd={this.tEnd.bind(this)} style={{transition:trans?'transform .4s':''}}
@@ -78,7 +78,7 @@ class PuppComponent extends React.Component{
               {this.props.children}
             </MovableView>
           </MovableArea>
-        </View>
+        </CoverView>
       )
     }
 }

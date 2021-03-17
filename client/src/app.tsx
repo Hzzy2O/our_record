@@ -14,12 +14,15 @@ const dvaApp = dva.createApp({
 });
 
 const store = dvaApp.getStore();
-const {windowWidth,windowHeight} = Taro.getSystemInfoSync()
+const {windowWidth,windowHeight,statusBarHeight} = Taro.getSystemInfoSync()
 class App extends Component {
   componentDidMount () {
     if (process.env.TARO_ENV === 'weapp') {
       globalData.windowHeight = windowHeight;
       globalData.windowWidth = windowWidth;
+      globalData.statusBarHeight = statusBarHeight;
+      let custom = Taro.getMenuButtonBoundingClientRect();
+      globalData.customBar = custom.bottom  - statusBarHeight+4;
       let res = Taro.getSystemInfoSync();
       let h_flag = res.model.toLowerCase().includes("iphone x");
       globalData.hScreen =  h_flag?'6.5':'4.5';

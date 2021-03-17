@@ -9,7 +9,11 @@
   padding-bottom: env(safe-area-inset-bottom);
   box-shadow: 0PX 4PX 60px 0px rgba(0, 0, 0, 0.085),0PX 4PX 60px 0px rgba(0, 0, 0, 0.085);
   justify-content: center;
+  transition: bottom .5s linear;
   padding: 0 80px;
+}
+.hideBar{
+  bottom: -58PX;
 }
 
 .tabBarBorder {
@@ -28,16 +32,17 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  &:nth-child(3){
-    transform-origin: 50% 50%;
+  &:nth-child(3) image{
+    width: 32PX;
+    height: 32PX;
   }
 }
 
-.tabBarItem cover-image {
+.tabBarItem image {
   width: 24PX;
   height: 24PX;
 }
 
-.tabBarItem cover-view {
+.tabBarItem view {
   font-size: 12PX;
 }

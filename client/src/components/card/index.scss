@@ -134,20 +134,27 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(7,1fr);
-    grid-template-rows: repeat(7,34PX);
+    grid-template-rows: repeat(7,30PX);
     .cal_item{
       display: flex;
       justify-content: center;
+      text-align: center;
+      line-height: 30PX;
       font-size: 18PX;
       color: rgb(0, 0, 0);
-      opacity: 0.4;
+      &.nowDay{
+        position: relative;
+        &::after{
+          content: '';
+          width: 18PX;
+          position: absolute;
+          display: block;
+          background: #000;
+          height: 3PX;
+          bottom: 5PX;
+        }
+      }
       
-      &:nth-child(7n){
-        color: rgb(252, 45, 131);
-      }
-      &:nth-child(7n+1){
-        color: rgb(0, 68, 255);
-      }
     }
   }
 }

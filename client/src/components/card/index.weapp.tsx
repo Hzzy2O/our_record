@@ -4,6 +4,7 @@ import { View, Text, Button ,Image ,CoverView} from '@tarojs/components'
 import classnames from "classnames";
 import {Month} from "../../types"
 import {getPic} from "../../apis/upload"
+import { getNowDate } from "../../utils/common"
 import "./index.scss"
 
 type Props = {
@@ -11,6 +12,9 @@ type Props = {
   monStatus:number;
   openClk:any;
 }
+
+const {year,month,date} = getNowDate()
+let nowDate = [year,month].join("-")
 
 const Card: FC<Props> = ({monStatus,monthData,openClk}) =>{
   const cls = classnames({
@@ -35,7 +39,12 @@ const Card: FC<Props> = ({monStatus,monthData,openClk}) =>{
   //结构月份数据
   const {month,days,color,desc,bt_year,daysArr,pic} = monthData;
   
-  let isToday = 1;
+  let isToday = nowDate === [bt_year,month].join("-");
+  const clsDayItem = (day) => classnames({
+    'cal_item':true,
+    'nowDay':isToday&&date===day
+  })
+
   let rdc_day = new Date(`${bt_year}-${month}-1`).getDay()-1;
   let arr1 = Array.from({length:rdc_day},()=>0);
   daysArr.sort((a,b)=>a.day-b.day);
@@ -81,8 +90,10 @@ const Card: FC<Props> = ({monStatus,monthData,openClk}) =>{
                   })
                 }
                 { 
-                  daysArr.map(e=>{
-                    return <View className='cal_item' style={{visibility:e.day>0?"visible":"hidden"}}>{e.day}</View>
+                  daysArr.map((e,i)=>{
+                    let color = i % 7 === 0 ? '252, 45, 131' : (i-1)%7 ===0 ? '0, 68, 255' :'0,0,0';
+                    let opc = e.title ||(isToday&&date===e.day) ? '0.9' : '0.5';
+                    return <View className={clsDayItem(e.day)} style={{visibility:e.day>0?"visible":"hidden",color:`rgba(${color+','+opc})`}}>{e.day}</View>
                   })
                 }
               </View>
