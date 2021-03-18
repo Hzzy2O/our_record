@@ -32,7 +32,7 @@ export default class Entry extends Component {
           text:'success'
         });
         setTimeout(() => {
-          Taro.navigateTo({
+          Taro.switchTab({
             url:"../index/index"
           })
         }, 500);

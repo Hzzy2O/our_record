@@ -24,4 +24,21 @@
             line-height: 20PX;
         }
     }
+    .txt-container{
+        padding-top: 1vh;
+        font-family: sans-serif;
+        .at-input{
+            margin-right: 30rpx;
+            input{
+                text-align: center;
+                text-indent: 74rpx;
+            }
+            &::after{
+                border-color: rgba(155, 155, 155, 0.199);
+            }
+        }
+        .at-input__input{
+            padding-right: 74rpx;
+        }
+    }
 }

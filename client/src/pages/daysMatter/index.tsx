@@ -4,7 +4,7 @@ import { View } from '@tarojs/components'
 // import { connect } from '@tarojs/redux'
 import './index.scss'
 import Loading from "../../components/loading/index.weapp"
-
+import classnames from "classnames";
 // @connect(({ daysMatter }) => ({
 //     ...daysMatter,
 // }))
@@ -15,7 +15,9 @@ class DaysMatter extends React.Component {
   }
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      flag:false
+    }
   }
 
   componentDidMount() {
@@ -23,9 +25,14 @@ class DaysMatter extends React.Component {
   }
 
   render() {
+    console.log(this.state)
+    const cls = classnames({
+      'flip-box':true,
+      'flip-box-change':this.state.flag
+    })
     return (
       <View className='daysMatter'>
-          
+         
       </View>
     )
   }

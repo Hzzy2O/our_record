@@ -7,27 +7,27 @@
     position: absolute;
     height: 100px;
     width: 100px;
-    top: 7vh;
+    top: 5vh;
     left: calc(50% - 50px);
     display: grid;
     place-items: center;
     padding-top: 20PX;
     z-index: 2;
     .year_txt{
-      font-size: 25PX;
+      font-size: 28PX;
       font-weight: 700;
     }
   }
   .swiper{
     position: absolute;
-    top:17vh;
+    top:13vh;
     width: 100%;
     overflow: visible;
-    height: 58vh;
+    height: 63vh;
   }
   .s_item{
     overflow: visible;
-    padding-top: 25PX;
+    padding-top: 36PX;
     display: flex;
     justify-content: center;
   }
@@ -39,7 +39,7 @@
     width: 160px;
     left: calc(50% - 80px);
     .open_btn{
-      width: 160px;
+      width: 180px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -48,16 +48,18 @@
       padding-top: 3PX;
       border-radius: 20PX;
       color: #888888;
-      border: 1px solid rgba(0, 0, 0, 0.212);
+      
       transition: background .4s linear;
     }
     .front_btn {
       color: #888888;
+      border: 2px solid rgb(223, 222, 222);
       background: #fff;
     }
     .back_btn{
       color: #fff;
       background: #000;
+      border: 2px solid rgba(0, 0, 0, 0.212);
     }
   }
   .color-tit{

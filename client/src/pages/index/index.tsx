@@ -193,7 +193,7 @@ class Index extends Component {
           {
             months.map((e : Month) => {
               return <SwiperItem className='s_item'>
-                <Card monthData={e} monStatus={mon_status} openClk={this.openPupp.bind(this,'show1',e.month)}></Card>
+                <Card monthData={e} btn_status={btn_status} monStatus={mon_status} openClk={this.openPupp.bind(this,'show1',e.month)}></Card>
               </SwiperItem>
             })
           }

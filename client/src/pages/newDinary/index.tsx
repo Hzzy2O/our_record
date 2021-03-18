@@ -1,10 +1,11 @@
 import React from "react"
 import Taro, {  Config } from '@tarojs/taro'
-import { View , Picker } from '@tarojs/components'
+import { View , Picker ,Editor ,Button } from '@tarojs/components'
 // import { connect } from '@tarojs/redux'
 import './index.scss'
 import { globalData ,getNowDate ,getDayOfWeek } from "../../utils/common"
 import {connect} from 'react-redux'
+import { AtInput } from 'taro-ui'
 import PicDisplay from "./picDisplay/index.weapp"
 import {upload,getPic} from "../../apis/upload"
 
@@ -46,7 +47,8 @@ class NewDinary extends React.Component {
     super(props)
     this.state = {
       dateSel:'',
-      dateTxt:''
+      dateTxt:'',
+      editorCtx:null
     }
   }
 
@@ -67,7 +69,21 @@ class NewDinary extends React.Component {
   formatDate(year,month,date,day){
     return `${getDayOfWeek(day)}. ${month}月 ${date} / ${year}`
   }
+  editorReady = e => {
+    Taro.createSelectorQuery().select('#editor').context((res) => {
+      this.setState({
+        editorCtx : res.context
+      })
+    }).exec()
+  }
 
+  undo = e => {
+    this.state.editorCtx.undo()
+  }
+  //输入框
+  handleChange(){
+
+  }
   backPage(){
     const {setTab,prevTab} = this.props;
     setTab({currentTab:prevTab})
@@ -91,6 +107,19 @@ class NewDinary extends React.Component {
           </View>
           <View style={`width:100vw;height:${customBar+statusBarHeight}PX`}></View>
           <PicDisplay picArr={[]}/>
+          <View className='txt-container'>
+            <AtInput
+                name='value'
+                title=''
+                type='text'
+                placeholder='标题'
+                placeholderStyle='text-align:center'
+                value={this.state.value}
+                onChange={this.handleChange.bind(this)}
+              />
+             <Editor id='editor' className='editor' placeholder="请输入内容" onReady={this.editorReady}></Editor>
+            {/* <Button type='warn' onClick={this.undo}>撤销</Button> */}
+          </View>
       </View>
     )
   }
