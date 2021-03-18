@@ -28,7 +28,7 @@ class PuppComponent extends React.Component{
   catchMove(e){
     console.log(e)
   }
-
+  
   tStart(e){
     this.setState({
       y_start:e.changedTouches[0].clientY,
@@ -70,7 +70,7 @@ class PuppComponent extends React.Component{
         'm-view':true
       })
       return (
-        <CoverView className={cls1} style={{width,height}} onClick={cancel.bind(this)} catchMove>
+        <View className={cls1} style={{width,height}} onClick={cancel.bind(this)} catchMove>
           <MovableArea className='m-area' onClick={(e)=>e.stopPropagation()} style={{height:ty?'40vh':'80vh'}}>
             <MovableView id='mview' direction='vertical' className={cls2} scaleMin={1} scaleMax={1} 
              y={0} onTouchEnd={this.tEnd.bind(this)} style={{transition:trans?'transform .4s':''}}
@@ -78,7 +78,7 @@ class PuppComponent extends React.Component{
               {this.props.children}
             </MovableView>
           </MovableArea>
-        </CoverView>
+        </View>
       )
     }
 }

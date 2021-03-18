@@ -16,12 +16,6 @@ import PuppComponent from "../../components/pupp/index.weapp"
 import { globalData ,COLORS } from "../../utils/common"
 
 // let {windowWidth,windowHeight} = globalData;
-type index = {
-  keyword:string;
-  inputing:boolean;
-  year:number;
-  months:Array<Month>
-}
 type StateProps = {
   currentTab:number
 }

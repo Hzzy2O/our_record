@@ -1,5 +1,7 @@
-import { Subscription, Effect } from 'dva';
+// import { Subscription, Effect } from 'dva';
 import { Reducer} from "redux";
+import Taro from '@tarojs/taro';
+import {tabList} from "../utils/common"
 
 export interface GlobalModelState {
   // 定义state
@@ -7,6 +9,7 @@ export interface GlobalModelState {
   currentTab:number;
   showBar:boolean;
   showNewDianry:boolean;
+  prevTab:number;
 }
 
 export interface GlobalModelType {
@@ -30,7 +33,8 @@ const GlobalModel: GlobalModelType = {
     loading:false,
     currentTab:0,
     showBar:false,
-    showNewDianry:false
+    showNewDianry:false,
+    prevTab:0
   },
   effects: {
     // effect函数
@@ -40,11 +44,15 @@ const GlobalModel: GlobalModelType = {
   },
   reducers: {
     // reducer
-    setTab(state,action){
-      return ({...state,...action.payload})
+    setTab(state:GlobalModelState,{payload}){
+      payload.prevTab = state.currentTab|0;
+      let {currentTab} = payload;
+      Taro.switchTab({url:tabList[currentTab].pagePath});
+      payload.showBar = currentTab ===1 ? false : true
+      return ({...state,...payload})
     },
-    changeBarShow(state,action){
-      return ({...state,...action.payload})
+    changeBarShow(state,{payload}){
+      return ({...state,...payload})
     },
   }
 };

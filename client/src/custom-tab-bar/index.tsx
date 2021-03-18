@@ -4,24 +4,8 @@ import { View, Image } from '@tarojs/components';
 import  './index.scss';
 import {connect} from 'react-redux'
 import classnames from "classnames";
-
-const list = [
-  {
-    pagePath: '/pages/index/index',
-    iconPath: '../assets/home.png',
-    selectedIconPath: '../assets/home_foc.png',
-  },
-  {
-    pagePath:  '/pages/newDinary/index',
-    iconPath: '../assets/add.png',
-    selectedIconPath: '../assets/add.png',
-  },
-  {
-    pagePath: '/pages/daysMatter/index',
-    iconPath: '../assets/my.png',
-    selectedIconPath: '../assets/my_foc.png',
-  },
-];
+import {tabList} from "../utils/common"
+const list = tabList;
 
 type StateProps = {
   currentTab:number;
@@ -29,7 +13,7 @@ type StateProps = {
 }
 
 type DispatchProps = {
-  setTab: (index) => void
+  setTab: (index) => void;
 }
 
 type Iprop = StateProps & DispatchProps
@@ -58,21 +42,12 @@ class CustomTabBar extends React.Component {
     show: this.props.showBar
   };
 
-  switchTab = (item, index) => {
-    const url = item.pagePath;
-    const {setTab,currentTab} = this.props
-    // global.globalData.selectedIndex = index;
-    if(index==1){
-      Taro.switchTab({ url });
-    }else{
-      index!==currentTab&&setTab({currentTab:index});
-      Taro.switchTab({ url });
-    }
-    
+  switchTab = ( index) => {
+    const {setTab} = this.props;
+    setTab({currentTab:index});
   };
 
   shouldComponentUpdate = (_nextProps, nextState) => {
-    console.log(_nextProps,nextState)
     return true
   };
 
@@ -89,7 +64,7 @@ class CustomTabBar extends React.Component {
           return (
             <View
               className='tabBarItem'
-              onClick={() => this.switchTab(item, index)}
+              onClick={() => this.switchTab(index)}
               data-path={item.pagePath}
               key={index}
             >

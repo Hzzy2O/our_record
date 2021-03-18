@@ -1,7 +1,7 @@
 export default {
   pages: [
-    'pages/index/index',
     'pages/newDinary/index',
+    'pages/index/index',
     'pages/entry/index',
     'pages/test/index',
     'pages/daysMatter/index',
