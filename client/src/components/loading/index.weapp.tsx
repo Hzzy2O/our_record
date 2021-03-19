@@ -5,7 +5,6 @@ import classnames from "classnames";
 import { BreedingRhombusSpinner,SwappingSquaresSpinner ,
   FulfillingBouncingCircleSpinner,LoopingRhombusesSpinner,ScalingSquaresSpinner
 } from './epic-spinner/index'
-import { useSelector } from '@tarojs/redux'
 import {GlobalModelState} from "../../models/global"
 
 import "./index.scss"

@@ -1,0 +1,17 @@
+.editor{
+  padding: 10PX 0;
+  .bottom_btn{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 20PX;
+    box-shadow: 0 0 16px #000;
+  }
+  .editor{
+    padding: 30rpx;
+    height: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+}

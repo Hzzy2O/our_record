@@ -7,6 +7,7 @@ import { globalData ,getNowDate ,getDayOfWeek } from "../../utils/common"
 import {connect} from 'react-redux'
 import { AtInput } from 'taro-ui'
 import PicDisplay from "./picDisplay/index.weapp"
+import EdictorArea from "../../components/editor/index.weapp"
 import {upload,getPic} from "../../apis/upload"
 
 type StateProps = {
@@ -69,13 +70,6 @@ class NewDinary extends React.Component {
   formatDate(year,month,date,day){
     return `${getDayOfWeek(day)}. ${month}月 ${date} / ${year}`
   }
-  editorReady = e => {
-    Taro.createSelectorQuery().select('#editor').context((res) => {
-      this.setState({
-        editorCtx : res.context
-      })
-    }).exec()
-  }
 
   undo = e => {
     this.state.editorCtx.undo()
@@ -105,8 +99,9 @@ class NewDinary extends React.Component {
             </View>
             <View className='white' style='font-size:0PX;color:#000;'></View>
           </View>
-          <View style={`width:100vw;height:${customBar+statusBarHeight}PX`}></View>
-          <PicDisplay picArr={[]}/>
+          <View style={`width:100vw;height:${customBar+statusBarHeight}PX;backround:#fff;`}></View>
+          <PicDisplay picArr={[]} style={{top:customBar+statusBarHeight+'PX'}}/>
+          <View style="width:100vw;height:40vh"></View>
           <View className='txt-container'>
             <AtInput
                 name='value'
@@ -117,8 +112,7 @@ class NewDinary extends React.Component {
                 value={this.state.value}
                 onChange={this.handleChange.bind(this)}
               />
-             <Editor id='editor' className='editor' placeholder="请输入内容" onReady={this.editorReady}></Editor>
-            {/* <Button type='warn' onClick={this.undo}>撤销</Button> */}
+             <EdictorArea />
           </View>
       </View>
     )
