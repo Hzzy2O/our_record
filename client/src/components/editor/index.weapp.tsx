@@ -1,41 +1,39 @@
 import React, { FC,memo,useState ,useEffect } from 'react'
 import Taro from '@tarojs/taro'
-import { View, Text, Button ,Editor } from '@tarojs/components'
+import { View, Text, Button ,Editor ,Textarea} from '@tarojs/components'
 import classnames from "classnames";
-
+import {globalData} from "../../utils/common"
 import {GlobalModelState} from "../../models/global"
 
 import "./index.scss"
 
+const {windowHeight} = globalData;
+type Props = {
+  contentChange:any;
+  submit:any
+}
 
-const EditorArea = ({}) =>{
+const EditorArea:FC<Props> = ({contentChange,submit}) =>{
   const [showMenu,setShowMenu] = useState(false);
   const [editorCtx,setEditorCtx] = useState({});
   const [boradHeight,setBoradHeight] = useState(0);
+  const [btmHeight,setBtmHeight] = useState(0);
 
   useEffect(()=>{
     Taro.onKeyboardHeightChange(res=>{
       setBoradHeight(res.height)
     });
+    
   },[boradHeight])
   
-  const cls = classnames({
-    'loading_container':true,
-  })
-  const editorReady = e => {
-    Taro.createSelectorQuery().select('#editor').context((res:any) => {
-      setEditorCtx(res.context)
-    }).exec()
-  }
-  const mouseFocus = (e) => {
-    console.log(e)
-  }
   return (
     <View className='editor'>
-      <Editor className='editor' id='editor' placeholder='内容' onReady={editorReady} onFocus={mouseFocus} style={{height:'40PX',minHeight:'40PX',overflow:'hidden'}}/>
-      <View style='height:100PX;width:100vw;'></View>
-      <View className='bottom_btn' style={{bottom:boradHeight+"PX"}}>
-        <View>1233333333333</View>
+      <Textarea className='editor' id='editor' style={`background:#fff;min-height:50px;margin-bottom:185PX`} autoHeight maxlength={999} cursorSpacing={50} onInput={contentChange} adjust-position={true}/>
+      {/* <View className='bottom_btn' style={{bottom:boradHeight?boradHeight-45:-38+"PX"}}>
+        <View>{boradHeight}</View>
+      </View> */}
+      <View className='done_btn' onClick={submit}>
+        done?
       </View>
     </View>
   )

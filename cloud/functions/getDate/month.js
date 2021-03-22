@@ -1,5 +1,5 @@
 module.exports =  async ({methods,db,data}) => {
-  switch (methods) {
+  switch (methods.toLowerCase()) {
     case 'get':
         try {
           return await db.collection('months').aggregate()
@@ -30,6 +30,20 @@ module.exports =  async ({methods,db,data}) => {
       } catch (e) {
         return e
       }
+      case 'newdianry':
+        try {
+          return await db.collection('dianry').add({data})
+        } catch (error) {
+          
+        }
+      case 'getdianrybymonth':
+        try {
+          return await db.collection('dianry').where({
+            bt_month:data.month
+          }).get()
+        } catch (error) {
+          
+        }
     default:
       break;
   }

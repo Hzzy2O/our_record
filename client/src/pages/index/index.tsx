@@ -21,7 +21,8 @@ type StateProps = {
 }
 
 type DispatchProps = {
-  changeBar: (bool) => void
+  changeBar: (bool) => void;
+  setTab:(data)=>void;
 }
 
 type Iprop = StateProps & DispatchProps
@@ -33,6 +34,9 @@ interface Index {
   currentTab: state.global.currentTab,
 }),
 dispatch => ({
+  setTab(payload:any){
+    dispatch({type:'global/setTab',payload})
+  },
   changeBar(payload:any){
     dispatch({type:'global/changeBarShow',payload})
   }
@@ -76,6 +80,11 @@ class Index extends Component {
     
   }
 
+  toDiaryList(month){
+    Taro.navigateTo({
+      url:"/pages/diaryList/index?month="+month
+    })
+  }
   //打开弹窗
   openPupp(show,month){
     let data = this.state.months[month-1];
@@ -141,11 +150,13 @@ class Index extends Component {
     }, 450);
   }
 
+  toNewDinary(dataSel){
+    this.props.setTab({currentTab:1,dataSel})
+  }
   //初始化数据
   async init(){
     this.setState({loading:true})
     const {list} = await getMonth()
-    console.log(list)
     this.setState({
       months:list
     },()=>{
@@ -193,7 +204,7 @@ class Index extends Component {
           {
             months.map((e : Month) => {
               return <SwiperItem className='s_item'>
-                <Card monthData={e} btn_status={btn_status} monStatus={mon_status} openClk={this.openPupp.bind(this,'show1',e.month)}></Card>
+                <Card monthData={e} btn_status={btn_status} monStatus={mon_status} openClk={this.openPupp.bind(this,'show1',e.month)} toNewDinary={this.toNewDinary.bind(this)}></Card>
               </SwiperItem>
             })
           }

@@ -1,6 +1,54 @@
-@import "../../assets/scss/variables";
 
 .diaryList {
     width: 100%;
     min-height: 100vh;
+    .card-box{
+        padding: 20PX 30rpx;
+        .card{
+            width: 100%;
+            height: 130PX;
+            border-radius: 15PX;
+            box-shadow: 0 10px 22PX 2px rgba(0, 0, 0, 0.068);
+            display: grid;
+            grid-template-columns: 3.5fr 1rpx 6.5fr;
+            margin-bottom: 15PX;
+            overflow: hidden;
+            position: relative;
+            .card-left{
+                display: grid;
+                place-items: center;
+                font-size: 14PX;
+                text-align: center;
+            }
+            .line{
+                width: 1rpx;
+                height: 100%;
+                background: rgba(194, 194, 194, 0.315);
+            }
+            .card-right{
+                
+                .card-img{
+                    height: 100%;
+                }
+                .card-alt{
+                    padding: 10PX 10rpx;
+                    color: #999;
+                    display: flex;
+                    align-items: center;
+                    height: 85%;
+                    justify-content:space-between;
+                    .symbol{
+                        height: 90%;
+                        font-weight: 700;
+                        font-size: 30PX;
+                        letter-spacing: 4px;
+                        &:nth-child(3){
+                            display: flex;
+                            align-items: flex-end;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

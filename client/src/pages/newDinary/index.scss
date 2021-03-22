@@ -28,6 +28,7 @@
     .txt-container{
         padding-top: 1vh;
         font-family: sans-serif;
+        background: #fff;
         .at-input{
             margin-right: 30rpx;
             input{
@@ -42,4 +43,9 @@
             padding-right: 74rpx;
         }
     }
+}
+
+.at-modal__content {
+    min-height: 23PX;
+    text-align: center;
 }

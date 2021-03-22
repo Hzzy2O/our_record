@@ -1,17 +1,38 @@
 .editor{
   padding: 10PX 0;
+  background: #fff;
+  width: 100vw;
+  height: auto;
+  overflow: hidden;
+  position: relative;
   .bottom_btn{
     position: fixed;
     left: 0;
-    bottom: 0;
     width: 100vw;
-    height: 20PX;
-    box-shadow: 0 0 16px #000;
+    height: 40PX;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 0 16px rgba(126, 126, 126, 0.171);
   }
   .editor{
-    padding: 30rpx;
     height: 10px;
     position: relative;
     overflow: hidden;
+    width: 92vw;
+    left: 4vw;
+    color: rgb(97, 97, 97);
+  }
+  .done_btn{
+    width: 60vw;
+    position: fixed;
+    bottom: 10PX;
+    left: calc(20vw);
+    background: #fff;
+    height: 40PX;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25PX;
+    box-shadow: 0 0 19px 3px rgba(15, 15, 15, 0.116);
   }
 }

@@ -12,17 +12,17 @@ type Props = {
   monStatus: number;
   openClk: any;
   btn_status: boolean;
+  toNewDinary:any
 }
 
 const { year, month, date } = getNowDate()
 let nowDate = [year, month].join("-")
 
-const Card: FC<Props> = ({ monStatus, monthData, openClk, btn_status }) => {
+const Card: FC<Props> = ({ monStatus, monthData, openClk, btn_status ,toNewDinary }) => {
   // const cls = classnames({
   //   'card1':true,
   //   'flip-container':true
   // })
-
   //结构月份数据
   const { month, days, color, desc, bt_year, daysArr, pic } = monthData;
 
@@ -35,10 +35,15 @@ const Card: FC<Props> = ({ monStatus, monthData, openClk, btn_status }) => {
     'flip-box': true,
     'flip-box-change': btn_status
   })
+
+  const toLost = () => {
+    console.log(1)
+  }
   let rdc_day = new Date(`${bt_year}-${month}-1`).getDay() - 1;
   let arr1 = Array.from({ length: rdc_day }, () => 0);
   daysArr.sort((a, b) => a.day - b.day);
 
+  let getDateSel = day => `${bt_year}-${month}-${day}`
   let count = daysArr.filter(e => e.title).length;
   return (
     <View className="box-item" >
@@ -46,6 +51,7 @@ const Card: FC<Props> = ({ monStatus, monthData, openClk, btn_status }) => {
         <View
           className="flip-box-front text-center card1"
           style={{ background: ` ${color || '#e2e1e1'} ${pic ? 'url(' + pic + ')' : ''} center/auto 106% no-repeat border-box border-box` }}
+          onClick={()=>Taro.navigateTo({url:`/pages/diaryList/index?month=${month}&year=${bt_year}`})}
         >
           <View className='inner'>
           <View className='card_top'>
@@ -88,9 +94,8 @@ const Card: FC<Props> = ({ monStatus, monthData, openClk, btn_status }) => {
                   }
                   { 
                     daysArr.map((e,i)=>{
-                      let color = i % 7 === 0 ? '252, 45, 131' : (i-1)%7 ===0 ? '0, 68, 255' :'0,0,0';
                       let opc = e.title ||(isToday&&date===e.day) ? '0.9' : '0.42';
-                      return <View className={clsDayItem(e.day)} style={{opacity:opc}}>{e.day}</View>
+                      return <View className={clsDayItem(e.day)} style={{opacity:opc}} onClick={()=>toNewDinary(getDateSel(e.day))}>{e.day}</View>
                     })
                   }
                 </View>

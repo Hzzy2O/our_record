@@ -10,6 +10,7 @@ export interface GlobalModelState {
   showBar:boolean;
   showNewDianry:boolean;
   prevTab:number;
+  dataSel:string
 }
 
 export interface GlobalModelType {
@@ -21,6 +22,7 @@ export interface GlobalModelType {
   reducers: {
     setTab: Reducer<GlobalModelState>,
     changeBarShow: Reducer<GlobalModelState>,
+    setdataSel: Reducer<GlobalModelState>,
   };
   subscriptions: {
     //xxx: Subscription
@@ -34,7 +36,8 @@ const GlobalModel: GlobalModelType = {
     currentTab:0,
     showBar:false,
     showNewDianry:false,
-    prevTab:0
+    prevTab:0,
+    dataSel:''
   },
   effects: {
     // effect函数
@@ -46,12 +49,16 @@ const GlobalModel: GlobalModelType = {
     // reducer
     setTab(state:GlobalModelState,{payload}){
       payload.prevTab = state.currentTab|0;
-      let {currentTab} = payload;
+      let {currentTab,dataSel} = payload;
       Taro.switchTab({url:tabList[currentTab].pagePath});
       payload.showBar = currentTab ===1 ? false : true
+      payload.dataSel = dataSel || ''
       return ({...state,...payload})
     },
     changeBarShow(state,{payload}){
+      return ({...state,...payload})
+    },
+    setdataSel(state,{payload}){
       return ({...state,...payload})
     },
   }
