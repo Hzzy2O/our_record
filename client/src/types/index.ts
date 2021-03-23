@@ -7,6 +7,7 @@ export type Month = {
   days:number;
   bt_year:number;
   daysArr:any []; 
+  count:any [];
 }
 
 export type Day = {

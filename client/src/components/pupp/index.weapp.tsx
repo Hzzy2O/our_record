@@ -5,7 +5,9 @@ import { globalData } from "../../utils/common"
 import classnames from "classnames";
 import "./index.scss"
 
-let width = globalData.windowWidth, height = globalData.windowHeight;
+
+const {customBar} = globalData
+let width = globalData.windowWidth, height = globalData.windowHeight+customBar;
 type Props = {
   show : boolean;
   cancel :any
@@ -75,6 +77,9 @@ class PuppComponent extends React.Component{
             <MovableView id='mview' direction='vertical' className={cls2} scaleMin={1} scaleMax={1} 
              y={0} onTouchEnd={this.tEnd.bind(this)} style={{transition:trans?'transform .4s':''}}
             inertia onClick={(e)=>e.preventDefault()} onTouchStart={this.tStart.bind(this)}>
+              <View className='top-box'>
+                <View className='top-line'></View>
+              </View>
               {this.props.children}
             </MovableView>
           </MovableArea>

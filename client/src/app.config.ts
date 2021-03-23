@@ -1,11 +1,11 @@
 export default {
   pages: [
     'pages/index/index',
+    'pages/diary/index',
     'pages/diaryList/index',
     'pages/entry/index',
     'pages/newDiary/index',
     'pages/daysMatter/index',
-    'pages/diary/index',
   ],
   window: {
     backgroundTextStyle: 'light',

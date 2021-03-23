@@ -2,10 +2,52 @@ page{
     overflow: hidden;
     height: 100%;
 }
-.test {
+.diary {
     width: 100%;
     max-height: 100%;
     padding-top: 20PX;
     box-sizing: border-box;
     overflow: hidden;
+    .outer-swiper{
+        height: 100vh;
+        .os-item{
+            .box{
+                height: 100%;
+            }
+            .img-swiper{
+                height: 45vh;
+            }
+        }
+        .txt-area{
+            text-align: center;
+            .ta-time{
+                font-size: 13PX;
+                margin: 10PX 0;
+            }
+            .ta-title{
+                font-weight: 700;
+                margin-bottom: 10PX;
+            }
+        }
+    }
+    .menulist{
+        View{
+            box-sizing: border-box;
+            border-color: rgb(223, 222, 222);
+            font-size: 14PX;
+        }
+    }
+    .foot_box{
+        height: 50PX;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1PX solid rgba(141, 141, 141, 0.342);
+        padding: 0 30rpx;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        box-sizing: border-box;
+    }
 }

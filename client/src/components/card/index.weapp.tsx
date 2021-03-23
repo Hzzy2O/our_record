@@ -24,7 +24,7 @@ const Card: FC<Props> = ({ monStatus, monthData, openClk, btn_status ,toNewdiary
   //   'flip-container':true
   // })
   //结构月份数据
-  const { month, days, color, desc, bt_year, daysArr, pic } = monthData;
+  const { month, days, color, desc, bt_year, daysArr, pic ,count } = monthData;
 
   let isToday = nowDate === [bt_year, month].join("-");
   const clsDayItem = (day) => classnames({
@@ -46,7 +46,7 @@ const Card: FC<Props> = ({ monStatus, monthData, openClk, btn_status ,toNewdiary
 
   const openPupp = (e) => {
     e.stopPropagation()
-    // openClk()
+    openClk()
   }
 
   let rdc_day = new Date(`${bt_year}-${month}-1`).getDay() - 1;
@@ -54,33 +54,33 @@ const Card: FC<Props> = ({ monStatus, monthData, openClk, btn_status ,toNewdiary
   daysArr.sort((a, b) => a.day - b.day);
 
   let getDateSel = day => `${bt_year}-${month}-${day}`
-  let count = daysArr.filter(e => e.title).length;
+  // let count.length = daysArr.filter(e => e.title).length;
   return (
     <View className="box-item" >
       <View className={cls}>
         <View
           className="flip-box-front text-center card1"
           style={{ background: ` ${color || '#e2e1e1'} ${pic ? 'url(' + pic + ')' : ''} center/auto 106% no-repeat border-box border-box` }}
-          onClick={toList}
         >
-          <View className='inner'>
+          <View className='inner' onClick={toList}>
           <View className='card_top'>
             <Text>{month}</Text>
           </View>
           <View className='card_sec'>
             <Text>{desc}</Text>
           </View>
+          
+          </View>
           <View className='card_ft'>
             <View className='day_progress'>
               <View className='progress_box'>
-                <View className='progress_line' style={{ width: count / days + '%' }}></View>
+                <View className='progress_line' style={{ width: count.length / days *100 + '%' }}></View>
               </View>
               <View>
-                {count}/{days}
+                {count.length}/{days}
               </View>
             </View>
             <View onClick={openPupp} className='iconfont iconshare-more' style='font-size:30px;color:#fff;'></View>
-          </View>
           </View>
         </View>
         <View

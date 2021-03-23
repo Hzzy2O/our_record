@@ -24,6 +24,13 @@ class DiaryList extends React.Component {
     this.setState({
       diaryList:data
     })
+    Taro.setStorageSync('diaryList',JSON.stringify(data))
+  }
+
+  toDetail = (idx) => {
+    Taro.navigateTo({
+      url:'/pages/diary/index?idx=' + idx
+    })
   }
 
   render() {
@@ -34,8 +41,8 @@ class DiaryList extends React.Component {
       <View className='diaryList'>
           <View className='card-box'>
             {
-              diaryList.map((e:any)=>{
-                 return <View className='card'>
+              diaryList.map((e:any,i)=>{
+                 return <View className='card' onClick={()=>this.toDetail(i)}>
                   <View className='card-left'>
                     <View className='card-info'>
                       <View style='font-size:22px;font-weight:700'>{e.bt_date}</View>
