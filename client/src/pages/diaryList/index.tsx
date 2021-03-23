@@ -41,6 +41,9 @@ class DiaryList extends React.Component {
       <View className='diaryList'>
           <View className='card-box'>
             {
+              !diaryList.length&&<View style='text-align:center;position:relative;top:35vh'>没有日记</View>
+            }
+            {
               diaryList.map((e:any,i)=>{
                  return <View className='card' onClick={()=>this.toDetail(i)}>
                   <View className='card-left'>
