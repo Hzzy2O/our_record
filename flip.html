@@ -253,5 +253,32 @@
         </div>
       </div>
     </div>
+    <script>
+      (function ($) {
+        'use strict';
+
+        let types = 'Array Object String Date RegExp Function Boolean Number Symbol BigInt Null Undefined'.split(' ').forEach(e=>
+          {
+            $['is'+e] = ele => type.call(ele) === e;
+          }
+        )
+        function type() {
+          return Object.prototype.toString.call(this).slice(8,-1);
+        }
+        return $;
+      })(window.$ || (window.$ = {}))
+
+      function copy(obj,deep) {
+        if(obj === null || (typeof obj !== "object" && !$.isFunction(obj))) return obj;
+
+        if($.isFunction(obj)){
+          return new Function("return " + obj.toString())();
+        }
+        else {
+
+        }
+        
+      }
+    </script>
   </body>
 </html>

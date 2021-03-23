@@ -150,7 +150,7 @@ class Index extends Component {
     }, 450);
   }
 
-  toNewDinary(dataSel){
+  toNewdiary(dataSel){
     this.props.setTab({currentTab:1,dataSel})
   }
   //初始化数据
@@ -204,7 +204,7 @@ class Index extends Component {
           {
             months.map((e : Month) => {
               return <SwiperItem className='s_item'>
-                <Card monthData={e} btn_status={btn_status} monStatus={mon_status} openClk={this.openPupp.bind(this,'show1',e.month)} toNewDinary={this.toNewDinary.bind(this)}></Card>
+                <Card monthData={e} btn_status={btn_status} monStatus={mon_status} openClk={this.openPupp.bind(this,'show1',e.month)} toNewdiary={this.toNewdiary.bind(this)}></Card>
               </SwiperItem>
             })
           }

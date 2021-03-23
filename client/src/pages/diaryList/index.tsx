@@ -12,7 +12,7 @@ import {Day} from "../../types/index"
 
 class DiaryList extends React.Component {
   state = {
-    dinaryList:[]
+    diaryList:[]
   }
 
   async componentWillMount() {
@@ -22,19 +22,19 @@ class DiaryList extends React.Component {
     })
     const {data} = await getDianryList({month:+param.month||3})
     this.setState({
-      dinaryList:data
+      diaryList:data
     })
   }
 
   render() {
 
-    const {dinaryList} = this.state
+    const {diaryList} = this.state
 
     return (
       <View className='diaryList'>
           <View className='card-box'>
             {
-              dinaryList.map((e:any)=>{
+              diaryList.map((e:any)=>{
                  return <View className='card'>
                   <View className='card-left'>
                     <View className='card-info'>
@@ -46,7 +46,7 @@ class DiaryList extends React.Component {
                   <View className='card-right'>
                     {
                       e.picArr.length>0&&<View className='card-img' style={`background: #999 url(${e.picArr[0]})
-                      center/auto 106% no-repeat border-box border-box`}></View>
+                      center/ 100% no-repeat border-box border-box`}></View>
                     }
                      {
                        !e.picArr.length&&<View className='card-alt'>

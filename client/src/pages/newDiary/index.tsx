@@ -24,7 +24,7 @@ type DispatchProps = {
 
 type Iprop = StateProps & DispatchProps
 
-interface NewDinary {
+interface Newdiary {
   props:Iprop,
   state:any
 }
@@ -43,7 +43,7 @@ dispatch => ({
   }
 }))
 
-class NewDinary extends React.Component {
+class Newdiary extends React.Component {
   config:Config = {
     navigationBarTitleText: '标题'
   }
@@ -54,7 +54,7 @@ class NewDinary extends React.Component {
       dateTxt:'',
       editorCtx:null,
       toastShow:false,
-      dinaryData:{
+      diaryData:{
         title:'',
         content:''
       },
@@ -96,17 +96,17 @@ class NewDinary extends React.Component {
     })
   }
   iptBind1(e:any){
-    const {dinaryData} = this.state;
-    dinaryData.title = e;
+    const {diaryData} = this.state;
+    diaryData.title = e;
     this.setState({
-      dinaryData
+      diaryData
     })
   }
   iptBind2(e:any){
-    const {dinaryData} = this.state;
-    dinaryData.content = e;
+    const {diaryData} = this.state;
+    diaryData.content = e;
     this.setState({
-      dinaryData
+      diaryData
     })
   }
   backPage(){
@@ -143,8 +143,8 @@ class NewDinary extends React.Component {
     
   }
   async submit(){
-    const {dinaryData,dateSel,picArr} = this.state,
-      {title,content} = dinaryData;
+    const {diaryData,dateSel,picArr} = this.state,
+      {title,content} = diaryData;
     if(!title){
       this.setState({
         toastShow:true
@@ -161,9 +161,9 @@ class NewDinary extends React.Component {
   }
   render() {
     let {statusBarHeight,customBar} = globalData;
-    const {dateSel,dateTxt,toastShow,dinaryData,picArr,modalShow} = this.state;
+    const {dateSel,dateTxt,toastShow,diaryData,picArr,modalShow} = this.state;
     return (
-      <View className='newDinary'>
+      <View className='newdiary'>
           <View className='top_nav' style={`padding-top:${statusBarHeight}PX;height:${customBar}PX`}>
             <View className='iconfont .iconchevron-left-copy' style='font-size:30PX;color:#000;' onClick={()=>this.backPage()}></View>
             <View className='mid_tit' >
@@ -182,7 +182,7 @@ class NewDinary extends React.Component {
                 type='text'
                 placeholder='标题'
                 placeholderStyle='text-align:center'
-                value={dinaryData.title}
+                value={diaryData.title}
                 onChange={this.iptBind1.bind(this)}
               />
              <EdictorArea contentChange={this.iptBind2.bind(this)} submit={()=>this.submit()}/>
@@ -203,4 +203,4 @@ class NewDinary extends React.Component {
   }
 }
 
-export default NewDinary
+export default Newdiary

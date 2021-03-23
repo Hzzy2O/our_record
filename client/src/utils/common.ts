@@ -22,7 +22,7 @@ export const tabList = [
     selectedIconPath: '../assets/home_foc.png',
   },
   {
-    pagePath:  '/pages/newDinary/index',
+    pagePath:  '/pages/newDiary/index',
     iconPath: '../assets/add.png',
     selectedIconPath: '../assets/add.png',
   },

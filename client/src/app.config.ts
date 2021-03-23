@@ -3,9 +3,9 @@ export default {
     'pages/index/index',
     'pages/diaryList/index',
     'pages/entry/index',
-    'pages/newDinary/index',
+    'pages/newDiary/index',
     'pages/daysMatter/index',
-    'pages/test/index',
+    'pages/diary/index',
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -31,7 +31,7 @@ export default {
         selectedIconPath: './assets/home_foc.png',
       },
       {
-        pagePath:  'pages/newDinary/index',
+        pagePath:  'pages/newDiary/index',
         text: '分类',
         iconPath: './assets/add.png',
         selectedIconPath: './assets/add.png',
