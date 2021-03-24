@@ -158,6 +158,7 @@ View {
   perspective: 1000px;
   -webkit-perspective: 1000px;
   height: 46.5vh;
+  z-index: 90;
 }
 
 .flip-box-front,

@@ -50,35 +50,36 @@ module.exports =  async ({methods,db,data}) => {
       } catch (e) {
         return e
       }
-      case 'newdianry':
-        try {
-          data.status = 1
-          return await db.collection('dianry').add({data})
-        } catch (error) {
-          
-        }
-      case 'getdianrybymonth':
-        try {
-          return await db.collection('dianry').where({
-            bt_month:data.month,
-            status:1
-          }).get()
-        } catch (error) {
-          
-        }
-        case 'updatediary':
-          try {
-            const {_id,rest} = data
-            return await db.collection('dianry').where({
-              _id
-            }).update({
-              data: {
-                ...rest
-              },
-            })
-          } catch (error) {
-            
-          }
+    case 'newdianry':
+      try {
+        data.status = 1;
+        data.id = Date.now()
+        return await db.collection('dianry').add({data})
+      } catch (error) {
+        
+      }
+    case 'getdianrybymonth':
+      try {
+        return await db.collection('dianry').where({
+          bt_month:data.month,
+          status:1
+        }).get()
+      } catch (error) {
+        
+      }
+    case 'updatediary':
+      try {
+        const {id} = data
+        return await db.collection('dianry').where({
+          id
+        }).update({
+          data: {
+            ...data
+          },
+        })
+      } catch (error) {
+        
+      }
     default:
       break;
   }

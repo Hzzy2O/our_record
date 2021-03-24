@@ -4,8 +4,8 @@ import { View, Swiper,SwiperItem } from '@tarojs/components'
 import "./index.scss"
 import { globalData ,getNowDate ,getDayOfWeek } from "../../utils/common"
 import PuppComponent from "../../components/pupp/index.weapp"
-import { AtList, AtListItem,AtIcon } from "taro-ui"
-
+import { AtList, AtListItem,AtIcon,AtModal } from "taro-ui"
+import { updateDiary } from "../../apis/index"
 
 const {statusBarHeight,customBar} = globalData
 export default class Index extends Component {
@@ -14,7 +14,8 @@ export default class Index extends Component {
     dataList:[],
     currentPage:0,
     currentImg:0,
-    menuShow:false
+    menuShow:false,
+    modalShow:false
   }
 
   componentDidMount(){
@@ -39,10 +40,22 @@ export default class Index extends Component {
     })
   }
 
+  setModal(modalShow){
+    this.setState({
+      modalShow
+    })
+  }
+
+  async deleteDiary(){
+    const {dataList,currentPage} = this.state,
+     {id} = dataList[currentPage];
+    await updateDiary({id,status:0})
+    Taro.navigateBack({delta:1})
+  }
   render () {
     // this.drawProgressbg()
     // console.log(document.body)
-    const { currentPage ,dataList ,menuShow } =this.state
+    const { currentPage ,dataList ,menuShow ,modalShow} =this.state
     return (
       <View className='diary'>
         <Swiper
@@ -60,7 +73,7 @@ export default class Index extends Component {
               <View style={`height:${customBar}PX`}></View>
                 <View className='img-area'>
                   {
-                    diary.picArr.length&&<Swiper
+                    diary.picArr.length>0&&<Swiper
                     className='img-swiper'
                     indicatorColor='#999'
                     indicatorActiveColor='#333'
@@ -99,9 +112,19 @@ export default class Index extends Component {
             <AtListItem title='喜欢' iconInfo={{ size: 20, color: '#333', value: 'heart', }}/>
             <AtListItem title='下载' iconInfo={{ size: 20, color: '#333', value: 'download', }}/>
             <AtListItem title='编辑' iconInfo={{ size: 20, color: '#333', value: 'edit', }}/>
-            <AtListItem title='删除' iconInfo={{ size: 20, color: '#333', value: 'trash', }}/>
+            <AtListItem title='删除' onClick={()=>this.setModal(true)} iconInfo={{ size: 20, color: '#333', value: 'trash', }}/>
           </AtList>
         </PuppComponent>
+        <AtModal
+            isOpened={modalShow}
+            title=''
+            cancelText='取消'
+            confirmText='确认'
+            onClose={ ()=>this.setModal(false) }
+            onCancel={ ()=>this.setModal(false) }
+            onConfirm={ ()=>this.deleteDiary() }
+            content='删除这篇日记?'
+          />
       </View>
     )
   }

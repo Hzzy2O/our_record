@@ -63,7 +63,7 @@ class Newdiary extends React.Component {
       currentImg:0,
       }
   }
-
+  
   componentDidMount() {
     this.setDate(this.props.dataSel);
   }

@@ -22,7 +22,6 @@ const PicDisplay: FC<Props> = ({picArr,style,uploadImg,openModal}) =>{
     setCurIdx(e.detail.current)
   }
   const openDele = () => {
-    console.log(123)
     openModal(true,curIdx)
   }
   return (

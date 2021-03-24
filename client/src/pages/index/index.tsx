@@ -165,7 +165,7 @@ class Index extends Component {
     }
     )
   }
-  componentDidMount(){
+  componentDidShow(){
     this.setState({
       year:new Date().getFullYear()
     })
@@ -187,7 +187,7 @@ class Index extends Component {
       'back_btn':!btn_status
     })
     return (
-      <View className='index' >
+      <View className='index' catchMove>
         <SearchNav keyword={keyword} inputing={inputing} search={this.search} bindInput={this.bindInput}
           changeStatus={this.changeStatus}></SearchNav>
         <View className='year_cho'>

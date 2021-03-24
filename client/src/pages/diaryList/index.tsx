@@ -15,7 +15,7 @@ class DiaryList extends React.Component {
     diaryList:[]
   }
 
-  async componentWillMount() {
+  async componentDidShow() {
     let param:any = getCurrentInstance().router?.params;
     Taro.setNavigationBarTitle({
       title:`${param.month}月 ${param.year}`
