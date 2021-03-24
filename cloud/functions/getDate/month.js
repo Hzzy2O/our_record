@@ -52,7 +52,8 @@ module.exports =  async ({methods,db,data}) => {
       }
       case 'newdianry':
         try {
-          return await db.collection('dianry').add({...data,status:1})
+          data.status = 1
+          return await db.collection('dianry').add({data})
         } catch (error) {
           
         }
@@ -65,6 +66,19 @@ module.exports =  async ({methods,db,data}) => {
         } catch (error) {
           
         }
+        case 'updatediary':
+          try {
+            const {_id,rest} = data
+            return await db.collection('dianry').where({
+              _id
+            }).update({
+              data: {
+                ...rest
+              },
+            })
+          } catch (error) {
+            
+          }
     default:
       break;
   }

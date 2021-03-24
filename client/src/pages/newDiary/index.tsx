@@ -155,6 +155,7 @@ class Newdiary extends React.Component {
       let data = {
         title,content,bt_year,bt_month,bt_date,picArr,time
       }
+      console.log(data)
       await createDianry(data)
       this.backPage()
     }
