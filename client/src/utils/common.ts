@@ -32,3 +32,32 @@ export const tabList = [
     selectedIconPath: '../assets/my_foc.png',
   },
 ];
+
+export function getRelativeTime(start,end) {
+  //将日期转为分隔符为-的格式
+  let start_date = new Date(start.replace(/-/g, "/"));
+  let end_date = new  Date(end.replace(/-/g, "/"));
+  let dateDiff = end_date.getTime() - start_date.getTime();
+  // 计算出相差天数
+  let days = Math.floor(dateDiff / (24 * 3600 * 1000));
+ 
+  // 计算出小时数
+  let residue1 = dateDiff % (24 * 3600 * 1000); // 计算天数后剩余的毫秒数
+  let hours = Math.floor(residue1 / (3600 * 1000));
+ 
+  // 计算相差分钟数
+  let residue2 = residue1 % (3600 * 1000); // 计算小时数后剩余的毫秒数
+  let minutes = Math.floor(residue2 / (60 * 1000));
+ 
+  // 计算相差秒数
+  let residue3 = residue2 % (60 * 1000); // 计算分钟数后剩余的毫秒数
+  let seconds = Math.round(residue3 / 1000);
+ 
+  let returnVal =
+    ((days == 0) ? "" : days+"天") +
+    ((hours == 0) ? "" : days+"时") +
+    ((minutes == 0) ? "" : minutes+"分") +
+    ((seconds == 0) ? "" : seconds+"秒");
+ 
+  return returnVal;
+}
